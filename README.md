@@ -27,6 +27,7 @@
             }
 
 ## 四.建议修改目标版本为22：
+   说明：遇到so文件报错问题，可尝试通过此方式解决
 
       targetSdkVersion 22
 
@@ -37,7 +38,7 @@
 ![](https://github.com/lmiot/CameraSDK/blob/master/img/setting.png)
 
 ## 六.页头颜色修改：
- **修改color文件的colorAccent颜色即可
+ 修改color文件的colorAccent颜色即可
 
      <color name="colorAccent">#FF4081</color>
 
