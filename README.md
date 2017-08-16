@@ -11,12 +11,10 @@
     		}
     	}
 
-
 ## 二.其次在dependencies中添加：
      dependencies {
             compile 'com.github.lmiot:CameraSDK:1.0'
         }
-
 
 ## 三.启动摄像头页面：
         /**
