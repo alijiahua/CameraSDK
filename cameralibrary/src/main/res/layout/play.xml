@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	>
+	<include
+		layout="@layout/new_title"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_heightPercent="8%h"
+		app:layout_widthPercent="100%w"
+		/>
+
+
+
+
+	<com.zhy.android.percent.support.PercentRelativeLayout
+		android:id="@+id/top_bg"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_heightPercent="8%h"
+		app:layout_widthPercent="100%w"
+		android:background="@color/white"
+		>
+		<CheckBox
+			android:id="@+id/ir_switch"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_heightPercent="60%h"
+			app:layout_widthPercent="60%h"
+			android:button="@null"
+			android:background="@drawable/camera_red_selector"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="15dp"
+			/>
+
+		<com.zhy.android.percent.support.PercentLinearLayout
+			android:layout_width="0dp"
+			app:layout_widthPercent="60%w"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center_vertical"
+			android:layout_alignParentRight="true"
+			>
+
+			<ImageView
+				android:id="@+id/ptz_hori_mirror"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:src="@drawable/ptz_hori_mirror"
+				android:padding="8dp"
+				android:background="@drawable/ptz_default_set_selector"
+
+				/>
+			<ImageView
+				android:id="@+id/ptz_vert_mirror"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:src="@drawable/ptz_vert_mirror"
+				android:padding="8dp"
+				android:background="@drawable/ptz_default_set_selector"
+
+				/>
+
+
+			<ImageView
+				android:id="@+id/ptz_brightness"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:src="@drawable/ptz_brightness"
+				android:padding="5dp"
+				android:background="@drawable/ptz_default_set_selector"
+				android:visibility="gone"
+
+				/>
+
+			<ImageView
+				android:id="@+id/ptz_contrast"
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:src="@drawable/ptz_contrast"
+				android:padding="5dp"
+				android:background="@drawable/ptz_default_set_selector"
+				android:visibility="gone"
+
+
+				/>
+
+			<ImageView
+				android:id="@+id/ptz_default_set"
+				android:layout_width="0dp"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:background="@drawable/ptz_default_set_selector"
+				android:padding="5dp"
+				android:src="@drawable/ptz_default_set"
+				android:visibility="gone"
+
+				/>
+
+
+		</com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+	</com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+
+
+	<com.zhy.android.percent.support.PercentRelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1">
+		<android.opengl.GLSurfaceView
+			android:id="@+id/mysurfaceview"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			app:layout_heightPercent="75%w"
+			app:layout_widthPercent="100%w"
+			android:longClickable="true"
+			android:layout_gravity="center"
+			android:layout_centerInParent="true"
+			/>
+
+	</com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+
+
+	<com.zhy.android.percent.support.PercentLinearLayout
+		android:id="@+id/id_main"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		app:layout_heightPercent="20%h"
+		android:orientation="vertical"
+		>
+
+
+
+		<com.zhy.android.percent.support.PercentLinearLayout
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_weight="1.5"
+			app:layout_widthPercent="100%w"
+			android:orientation="horizontal"
+			>
+
+
+
+			<com.zhy.android.percent.support.PercentRelativeLayout
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:gravity="center"
+				android:background="@color/white"
+
+				>
+
+
+				<RelativeLayout
+					android:id="@+id/ptz_audio_layout"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:layout_marginLeft="10dp"
+					android:background="@drawable/ptz_default_set_selector"
+
+					>
+					<CheckBox
+						android:id="@+id/ptz_audio"
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:background="@drawable/camera_radio_selector"
+						android:button="@null"
+						android:layout_centerInParent="true"
+						/>
+
+				</RelativeLayout>
+
+				<ImageView
+					android:id="@+id/ptz_screen"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:background="@drawable/ptz_default_set_selector"
+					android:src="@drawable/screen_set"
+					android:padding="8dp"
+					android:layout_marginLeft="10dp"
+					android:layout_below="@+id/ptz_audio_layout"
+
+					/>
+
+				<RelativeLayout
+					android:id="@+id/ptz_talk_layout"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:layout_marginLeft="10dp"
+					android:layout_toRightOf="@+id/ptz_audio_layout"
+					android:background="@drawable/ptz_default_set_selector"
+
+					>
+					<CheckBox
+						android:id="@+id/ptz_talk"
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:background="@drawable/camera_voide_selector"
+						android:button="@null"
+						android:layout_centerInParent="true"
+						/>
+
+				</RelativeLayout>
+
+
+
+			</com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+			<com.zhy.android.percent.support.PercentRelativeLayout
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:background="@color/white"
+				>
+
+				<ImageView
+					android:id="@+id/id_centrol"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="30%h"
+					app:layout_widthPercent="30%h"
+					android:layout_centerInParent="true"
+					android:src="@drawable/camera_centor"
+					/>
+				<ImageView
+					android:id="@+id/id_down"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="30%h"
+					app:layout_widthPercent="30%h"
+					android:layout_centerInParent="true"
+					android:src="@drawable/camera_down"
+					android:layout_below="@+id/id_centrol"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+
+				<ImageView
+					android:id="@+id/id_right"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="30%h"
+					app:layout_widthPercent="30%h"
+					android:layout_centerInParent="true"
+					android:src="@drawable/camera_down"
+					android:layout_toRightOf="@+id/id_centrol"
+					android:rotation="-90"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+				<ImageView
+					android:id="@+id/id_up"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="30%h"
+					app:layout_widthPercent="30%h"
+					android:layout_centerInParent="true"
+					android:src="@drawable/camera_down"
+					android:layout_above="@+id/id_centrol"
+					android:rotation="180"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+
+				<ImageView
+					android:id="@+id/id_left"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="30%h"
+					app:layout_widthPercent="30%h"
+					android:src="@drawable/camera_down"
+					android:rotation="90"
+					android:layout_below="@+id/id_up"
+					android:layout_toLeftOf="@+id/id_centrol"
+					android:layout_toStartOf="@+id/id_centrol"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+
+
+			</com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+			<com.zhy.android.percent.support.PercentRelativeLayout
+				android:layout_width="0dp"
+				android:layout_weight="1"
+				android:layout_height="match_parent"
+				android:background="@color/white"
+				android:gravity="center"
+				>
+				<TextView
+					android:id="@+id/id_videoing"
+					android:text="正在录像……"
+					android:layout_centerHorizontal="true"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="8sp"
+					android:textColor="@color/red"
+					android:visibility="gone"
+					/>
+
+
+				<ImageView
+					android:id="@+id/ptz_take_photos"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:src="@drawable/ptz_takepic"
+					android:padding="9dp"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+				<ImageView
+					android:id="@+id/ptz_take_videos"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:padding="8dp"
+					android:src="@drawable/ptz_takevideo"
+					android:layout_toRightOf="@+id/ptz_take_photos"
+					android:background="@drawable/ptz_default_set_selector"
+
+					/>
+
+				<ImageView
+					android:id="@+id/ptz_resolution"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:background="@drawable/ptz_default_set_selector"
+					android:src="@drawable/easyicon_cn"
+					android:layout_below="@+id/ptz_take_photos"
+					android:padding="10dp"
+					/>
+
+				<ImageView
+					android:id="@+id/preset"
+					android:layout_width="0dp"
+					android:layout_height="0dp"
+					app:layout_heightPercent="40%h"
+					app:layout_widthPercent="40%h"
+					android:background="@drawable/ptz_default_set_selector"
+					android:src="@drawable/ptz_resolution_preset"
+					android:layout_toRightOf="@+id/ptz_resolution"
+					android:layout_below="@+id/ptz_take_videos"
+					android:padding="8dp"
+					/>
+
+
+			</com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+		</com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+
+
+
+	</com.zhy.android.percent.support.PercentLinearLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

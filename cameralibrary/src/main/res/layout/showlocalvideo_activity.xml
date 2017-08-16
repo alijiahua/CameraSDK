@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+
+    <include
+        layout="@layout/new_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        />
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <android.opengl.GLSurfaceView
+            android:id="@+id/glsurfaceview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            />
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/showbottom"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="vertical"
+            android:background="@color/colorAccent"
+            >
+
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/sumtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/progressBar1"
+                android:layout_marginRight="5dp"
+                android:text="00:00:00"
+                android:textColor="@color/color_white" />
+
+            <TextView
+                android:id="@+id/currenttime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/progressBar1"
+                android:layout_marginLeft="5dp"
+                android:text="00:00:00"
+                android:textColor="@color/color_white" />
+
+            <TextView
+                android:id="@+id/takevideo_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/currenttime"
+                android:layout_margin="5dp"
+                android:text="TextView"
+                android:textColor="@color/color_white"
+                android:textSize="15sp"
+                android:visibility="gone"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/progressBar1"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@+id/btn_left"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:visibility="gone"
+                    android:background="@drawable/video_play_left_selector" />
+
+                <Button
+                    android:id="@+id/btn_play"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/video_play_play_selector" />
+
+                <Button
+                    android:id="@+id/btn_right"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:visibility="gone"
+                    android:background="@drawable/video_play_right_selector" />
+            </LinearLayout>
+    </RelativeLayout>
+
+</com.zhy.android.percent.support.PercentLinearLayout>

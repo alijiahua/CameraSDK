@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_below="@+id/id_img_wifi_config"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/id_tv_wifi_ssid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@drawable/wifi_edit_bg_ssid"
+            android:textSize="18sp"
+            android:textColor="#A7A7A7"/>
+
+        <EditText
+            android:id="@+id/id_edit_wifi_pass"
+            android:layout_width="match_parent"
+            android:hint="@string/plz_input_cur_wifi_pw"
+            android:background="@drawable/wifi_edit_background"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/id_btn_search_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:text="@string/search_device"
+            android:background="@drawable/wifi_btn_bg"/>
+
+        <TextView
+            android:id="@+id/id_tv_use_other_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"
+            android:text="@string/use_other_wifi"
+            android:textSize="18sp"
+            android:textColor="#60d1b5"/>
+    </LinearLayout>
+
+
+</LinearLayout>

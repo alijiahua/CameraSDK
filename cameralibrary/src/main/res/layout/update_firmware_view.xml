@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+
+    <include
+        layout="@layout/new_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        />
+
+
+
+    <TextView
+        android:id="@+id/sysver"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:text="当前版本："
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/color_black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d6_gray"/>
+    <TextView
+        android:id="@+id/service_sysver_text"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:text="最新版本："
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:textColor="@color/color_black" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d6_gray"/>
+    <TextView
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:text="点击升级"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:textColor="@color/white"
+        android:background="@color/colorAccent"
+        android:visibility="gone"
+        />
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

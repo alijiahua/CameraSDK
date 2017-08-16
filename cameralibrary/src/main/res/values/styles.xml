@@ -1,0 +1,224 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:listDivider">@drawable/divider_bg</item>
+    </style>
+
+
+
+
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="MyLight_select" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/light_select</item>
+    </style>
+
+    <style name="MyCheck_Box" parent="@android:style/Widget.CompoundButton.CheckBox">
+
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/checkbox_select</item>
+
+    </style>
+
+
+    <style name="loadingdialog">
+        <item name="android:windowBackground">
+            @color/transparent
+        </item>
+
+    </style>
+
+
+
+
+
+
+
+
+    <style name="MyhouseCheck_Box" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox1</item>
+    </style>
+
+
+
+
+
+
+
+    <style name="MyhouseCheck_Box2" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox2</item>
+    </style>
+
+    <style name="MyhouseCheck_Box3" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox3</item>
+    </style>
+
+    <style name="MyhouseCheck_Box4" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox4</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+    <style name="MyhouseCheck_Box5" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox5</item>
+    </style>
+    <style name="MyhouseCheck_Box51" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox51</item>
+    </style>
+
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/dialog_selector</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+    <declare-styleable name="RotateTextView">
+        <attr name="degree" format="dimension"/>
+    </declare-styleable>
+
+    <style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+
+
+
+
+    <style name="MybathtubCheck_Box1" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bathtub_checkbox1</item>
+    </style>
+    <style name="MybathtubCheck_Box2" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bathtub_checkbox2</item>
+    </style>
+    <style name="MybathtubCheck_Box3" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bathtub_checkbox3</item>
+    </style>
+    <style name="MybathtubCheck_Box4" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bathtub_checkbox4</item>
+    </style>
+    <style name="MybathtubCheck_Box5" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/bathtub_checkbox5</item>
+    </style>
+    <style name="MyhouseCheck_Box6" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/house_checkbox6</item>
+    </style>
+    <style name="MyCheck_Box2" parent="@android:style/Widget.CompoundButton.CheckBox">
+
+        <item name="android:button">@drawable/checkbox_select2</item>
+
+
+    </style>
+
+
+    <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+
+    <!-- ActionSheet进出动画 -->
+    <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
+    </style>
+
+
+
+    <style name="BiggerDialogStyle" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+
+
+    <style name="top_bg_style">
+        <item name="android:background">@drawable/top_bg_blue</item>
+    </style>
+
+    <style name="bg_style">
+        <item name="android:background">@color/color_bg</item>
+    </style>
+
+
+    <!-- 首页（第一级页面不让Activity透明） -->
+    <style name="mainPageStyle" parent="AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <!-- 非首页（非第一级页面让Activity透明） -->
+    <style name="otherPageStyle" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+
+    </style>
+
+    <style name="TranslucentTheme" parent="AppTheme">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
+    </style>
+
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+</resources>

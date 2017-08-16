@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    >
+
+    <TextView
+        android:id="@+id/id_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="标题"
+        android:textColor="@color/text_color"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:id="@+id/id_edit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/text_color"
+        android:textSize="15sp"
+        android:background="@drawable/zone_dialog_bg"
+        android:layout_below="@+id/id_title"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+
+        />
+
+    <Button
+        android:id="@+id/id_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/selector_dialog_img_del"
+        />
+
+    <Button
+        android:id="@+id/id_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_below="@+id/id_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/location_btn_selector"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/id_about_title"
+        layout="@layout/new_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        />
+
+
+    <SurfaceView
+        android:id="@+id/surfaceview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="92%h"
+        app:layout_widthPercent="100%w"
+        android:layout_below="@+id/id_about_title"
+        >
+    </SurfaceView>
+
+    <com.lmiot.cameralibrary.zxing.view.ViewfinderView
+        android:id="@+id/viewfinderview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="92%h"
+        app:layout_widthPercent="100%w"
+        android:background="#00000000"
+        app:layout_marginTopPercent="8%h"
+        >
+    </com.lmiot.cameralibrary.zxing.view.ViewfinderView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:text="@string/zxing"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="50dp"
+        >
+    </TextView>
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

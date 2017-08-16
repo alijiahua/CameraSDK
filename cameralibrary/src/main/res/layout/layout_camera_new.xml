@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <include
+        layout="@layout/new_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        />
+
+    <LinearLayout
+        android:id="@+id/id_add_layout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+
+        >
+        <TextView
+            android:text="当前没有摄像头，您可以"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="15sp"
+            />
+
+        <Button
+            android:id="@+id/id_add_bt"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:text="添加摄像头"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/air_button_setting_selector"
+            />
+
+    </LinearLayout>
+
+
+
+    <GridView
+        android:id="@+id/id_device_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:horizontalSpacing="15dp"
+        android:numColumns="2"
+        android:padding="15dp"
+        android:verticalSpacing="15dp"
+        />
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

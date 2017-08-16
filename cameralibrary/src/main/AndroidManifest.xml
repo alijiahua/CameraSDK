@@ -1,0 +1,185 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.lmiot.cameralibrary"
+    >
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name=" android.permission.ACCESS_WIFI_STATE " />
+    <uses-feature android:name="android.permission.CHANGE_WIFI_STATE " />
+    <uses-feature android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+        <!--智能云摄像头-->
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.LinkCameraSettingActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.AddCameraActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="Add Camera"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            >
+        </activity>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.PlayBackTFActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.PlayBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.LocalPictureAndVideoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SettingActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.LocalVideoGridActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SettingSDCardActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SCameraSetPlanVideoTiming"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SCameraSetSDTiming"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SettingUserActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.CameraDevices"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SensorListActivty"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.FirmwareUpdateActiviy"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SettingAlarmActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.EditSensorActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SensorStartCodeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.ShowLocalVideoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/otherPageStyle"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.PlayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="play"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.CameraPictureActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="play"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.CameraVideoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="play"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.PictureDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="play"
+            android:launchMode="singleTask"
+            />
+        <activity
+            android:name="com.lmiot.cameralibrary.Camera_new.SettingWifiActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="WifiSetting"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".zxing.CaptureActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="WifiSetting"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
+        <service android:name=".Camera_new.BridgeService"/>
+        
+    </application>
+
+</manifest>

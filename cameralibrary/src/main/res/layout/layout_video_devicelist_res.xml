@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/camera_bg"
+                android:padding="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/video_left_id"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/video_device"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_left_id"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/video_devicename_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/name"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            />
+
+        <TextView
+            android:id="@+id/video_connectstate_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/online"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

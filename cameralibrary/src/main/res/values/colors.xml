@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f6821f</color>
+    <color name="colorPrimaryDark">#f6821f</color>
+    <color name="colorAccent">#f6821f</color>
+
+    <color name="yellow_top">#f6821f</color>
+
+    <color name="colorAccent01">#50f6821f</color>
+    <color name="login_btn_pressed">#ffa200</color>
+    <color name="background_gray">#EEEEEE</color>
+    <color name="d6_gray">#666666</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparent_white">#00000000</color>
+
+    <color name="red">#FF0000</color>
+
+    <color name="text_gray">#999999</color>
+
+    <color name="black">#0f0f0f</color>
+    <color name="text_color">#726E6E</color>
+
+
+    <color name="color_white">#ffffffff</color>
+    <color name="color_shadow">#ff333333</color>
+    <color name="color_divider">#ffdddddd</color>
+    <color name="color_black">#ff000000</color>
+    <color name="color_grey">#88888888</color>
+    <color name="color_line">#ff444444</color>
+    <color name="color_grid_bg">#ff0caae4</color>
+    <color name="color_bg">#ff666666</color>
+
+    <!-- 下面都是用在二维码 -->
+
+
+    <color name="cache_color_hint">#00000000</color>
+
+    <!-- 下面都是用在二维码 -->
+    <color name="color_alarm_textcolor">#5C5B5B</color>
+    <color name="color_startcode_bg">#2EC6F6</color>
+
+
+</resources>

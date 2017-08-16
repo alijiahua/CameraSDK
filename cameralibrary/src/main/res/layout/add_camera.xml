@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        layout="@layout/new_title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_heightPercent="8%h"
+        app:layout_widthPercent="100%w"
+        />
+
+<LinearLayout
+    android:id="@+id/id_zxing_layout"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:visibility="gone"
+    >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:text="设备编号:"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:paddingLeft="15dp"
+                android:layout_marginLeft="15dp"
+                />
+            <EditText
+                android:id="@+id/id_camera_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:hint="请输入设备编号"
+                android:paddingLeft="10dp"
+                />
+
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d6_gray"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:text="用户名称:"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:paddingLeft="15dp"
+                android:layout_marginLeft="15dp"
+                />
+            <EditText
+                android:id="@+id/id_camera_name"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:text="admin"
+                android:paddingLeft="10dp"
+                />
+
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d6_gray"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:text="设备密码:"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:paddingLeft="15dp"
+                android:layout_marginLeft="15dp"
+                />
+            <EditText
+                android:id="@+id/id_camera_ps"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:text="888888"
+                android:paddingLeft="10dp"
+                />
+
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/d6_gray"/>
+
+
+    <Button
+        android:id="@+id/id_camera_save"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_share"
+        android:text="@string/complete"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        />
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/id_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible"
+        android:layout_below="@+id/id_about_title"
+        >
+
+        <ListView
+            android:id="@+id/id_add_device_listview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/d6_gray"
+            android:dividerHeight="1px"
+            />
+
+        <TextView
+            android:id="@+id/id_restar_search"
+            android:text="重新扫描"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
+</com.zhy.android.percent.support.PercentLinearLayout>

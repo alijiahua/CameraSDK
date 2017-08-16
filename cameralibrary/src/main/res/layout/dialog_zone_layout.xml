@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:padding="15dp"
+    >
+
+    <TextView
+        android:id="@+id/id_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center"
+        android:text="标题"
+        android:textSize="15sp"
+        android:gravity="center|top"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/id_edit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/text_color"
+        android:textSize="15sp"
+        android:background="@drawable/zone_dialog_bg"
+        android:layout_below="@+id/id_title"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
+
+
+    <Button
+        android:id="@+id/id_sure"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:text="确定"
+        android:textSize="15sp"
+        android:background="@drawable/location_btn_selector"
+        android:layout_below="@+id/id_edit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/id_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:textSize="15sp"
+        android:background="@drawable/selector_dialog_img_del"
+        android:paddingLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+	>
+
+	<include
+		layout="@layout/new_title"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		app:layout_heightPercent="8%h"
+		app:layout_widthPercent="100%w"
+		/>
+
+
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+		>
+
+        <LinearLayout
+			android:id="@+id/wifi_setting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+			android:paddingLeft="20dp"
+			android:gravity="center_vertical"
+			>
+            <TextView
+		        android:layout_width="0dp"
+				android:layout_weight="5"
+		        android:layout_height="match_parent"
+		        android:textSize="15sp"
+		        android:text="WIFI设置"
+		        android:textColor="@color/color_black" 
+		        android:gravity="center_vertical"/>
+
+           <ImageView
+		        android:layout_width="0dp"
+				android:layout_weight="1"
+		        android:layout_height="20dp"
+		        android:src="@drawable/set_enter"
+
+			   />
+        </LinearLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/d6_gray"
+			/>
+        <LinearLayout
+			android:id="@+id/pwd_setting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+			android:paddingLeft="20dp"
+			android:gravity="center_vertical"
+			>
+            <TextView
+		        android:layout_width="0dp"
+				android:layout_weight="5"
+		        android:layout_height="match_parent"
+		        android:textSize="15sp"
+		        android:text="修改密码"
+		        android:textColor="@color/color_black"
+		        android:gravity="center_vertical"/>
+
+           <ImageView
+		        android:layout_width="0dp"
+				android:layout_weight="1"
+		        android:layout_height="20dp"
+		        android:src="@drawable/set_enter"
+
+			   />
+        </LinearLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/d6_gray"
+			/>
+
+
+        <LinearLayout
+			android:id="@+id/sd_setting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+			android:paddingLeft="20dp"
+			android:gravity="center_vertical"
+			>
+            <TextView
+		        android:layout_width="0dp"
+				android:layout_weight="5"
+		        android:layout_height="match_parent"
+		        android:textSize="15sp"
+		        android:text="SD卡设置"
+		        android:textColor="@color/color_black"
+		        android:gravity="center_vertical"/>
+
+           <ImageView
+		        android:layout_width="0dp"
+				android:layout_weight="1"
+		        android:layout_height="20dp"
+		        android:src="@drawable/set_enter"
+
+			   />
+        </LinearLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/d6_gray"
+			/>
+
+        <LinearLayout
+			android:id="@+id/tf_setting"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+			android:paddingLeft="20dp"
+			android:gravity="center_vertical"
+			>
+            <TextView
+		        android:layout_width="0dp"
+				android:layout_weight="5"
+		        android:layout_height="match_parent"
+		        android:textSize="15sp"
+		        android:text="远程录像"
+		        android:textColor="@color/color_black"
+		        android:gravity="center_vertical"/>
+
+           <ImageView
+		        android:layout_width="0dp"
+				android:layout_weight="1"
+		        android:layout_height="20dp"
+		        android:src="@drawable/set_enter"
+
+			   />
+        </LinearLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/d6_gray"
+			/>
+
+        <LinearLayout
+			android:id="@+id/update_firmware"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+			android:paddingLeft="20dp"
+			android:gravity="center_vertical"
+			>
+            <TextView
+		        android:layout_width="0dp"
+				android:layout_weight="5"
+		        android:layout_height="match_parent"
+		        android:textSize="15sp"
+		        android:text="固件升级"
+		        android:textColor="@color/color_black"
+		        android:gravity="center_vertical"/>
+
+           <ImageView
+		        android:layout_width="0dp"
+				android:layout_weight="1"
+		        android:layout_height="20dp"
+		        android:src="@drawable/set_enter"
+
+			   />
+        </LinearLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/d6_gray"
+			/>
+
+
+
+
+    </com.zhy.android.percent.support.PercentLinearLayout>
+   
+</com.zhy.android.percent.support.PercentLinearLayout >
