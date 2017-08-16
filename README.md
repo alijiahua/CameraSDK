@@ -38,7 +38,7 @@
 ![](https://github.com/lmiot/CameraSDK/blob/master/img/setting.png)
 
 ## 六.页头颜色修改：
- 修改color文件的colorAccent颜色即可
+   修改color文件的colorAccent颜色即可
 
      <color name="colorAccent">#FF4081</color>
 
