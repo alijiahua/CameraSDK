@@ -33,7 +33,10 @@
       targetSdkVersion 22
 
 ## 五.参考效果图：
-![](https://github.com/alijiahua/Image/blob/master/circleCorlorBg.png)
+![](https://github.com/lmiot/CameraSDK/blob/master/img/main.png)
+![](https://github.com/lmiot/CameraSDK/blob/master/img/add.png)
+![](https://github.com/lmiot/CameraSDK/blob/master/img/play.png)
+![](https://github.com/lmiot/CameraSDK/blob/master/img/setting.png)
 
 ## 六.联系方式：980846919@qq.com
 
