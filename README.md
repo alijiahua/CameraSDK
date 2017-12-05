@@ -12,24 +12,19 @@
     	}
 
 ## 二.其次在dependencies中添加：
-     dependencies {
-            compile 'com.github.lmiot:CameraSDK:1.0'
+
+      dependencies {
+            compile 'com.github.lmiot:CameraSDK:1.5'
         }
 
-## 三.启动摄像头页面：
-        /**
-         * 进入摄像头页面
-         * @param sessionID 用户sessionID
-         */
-         private void startCamera(String sessionID) {
-                         SPUtil.setSessionID(sessionID);
-                         startActivity(new Intent(MainActivity.this, CameraDevices.class));
-            }
+## 三.启动摄像头页面及设置用户名：
 
-## 四.建议修改目标版本为22：
-   说明：遇到so文件报错问题，可尝试通过此方式解决
+        startActivity(new Intent(MainActivity.this, CameraDevices.class));
+        DataUtil.setUerName(SPUtil.getUserName(this)); //设置摄像头保存用户名
+        注：摄像头数据目前保存在本地，要保存到云端参考SqlUtil中的相关方法
 
-      targetSdkVersion 22
+
+
 
 ## 五.参考效果图：
 ![](https://github.com/lmiot/CameraSDK/blob/master/img/main.png)
@@ -37,12 +32,7 @@
 ![](https://github.com/lmiot/CameraSDK/blob/master/img/play.png)
 ![](https://github.com/lmiot/CameraSDK/blob/master/img/setting.png)
 
-## 六.页头颜色修改：
-   修改color文件的colorAccent颜色即可
-
-     <color name="colorAccent">#FF4081</color>
 
 
-## 七.问题反馈：980846919@qq.com
 
 
