@@ -187,7 +187,7 @@
 <string name="title_img"> Picture list </string>
 <string name="yun_camera"> Cloud camera </string>
 <string name="video_list"> Video list </string>
-<string name="add_camera"> Ddd camera </string>
+<string name="add_camera">Add camera </string>
 <string name="dev_code"> Device number: </string>
 <string name="input_dev_code"> Please enter the device number </string>
 <string name="uesrname_1"> Username: </string>
