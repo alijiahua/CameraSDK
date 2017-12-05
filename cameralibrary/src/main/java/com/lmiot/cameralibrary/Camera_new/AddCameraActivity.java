@@ -1,6 +1,4 @@
 package com.lmiot.cameralibrary.Camera_new;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,35 +23,27 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
+import com.lmiot.androidtools_library.SDK.ZxingSdk;
+import com.lmiot.androidtools_library.Utils.ActivityUtil;
 import com.lmiot.cameralibrary.Camera_new.BridgeService.AddCameraInterface;
 import com.lmiot.cameralibrary.Camera_new.BridgeService.CallBackMessageInterface;
 import com.lmiot.cameralibrary.Camera_new.adapter.SearchListAdapter;
-import com.lmiot.cameralibrary.Camera_new.bean.CameraBean;
-import com.lmiot.cameralibrary.Camera_new.bean.CameraRespone;
-import com.lmiot.cameralibrary.Camera_new.bean.NormalResponse;
-import com.lmiot.cameralibrary.Camera_new.bean.SaveCameraBean;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
-import com.lmiot.cameralibrary.Util.SPUtil;
-import com.lmiot.cameralibrary.Util.TimeUtils;
+import com.lmiot.cameralibrary.SQL.CamerBean;
+import com.lmiot.cameralibrary.SQL.SqlUtil;
+import com.lmiot.cameralibrary.Util.DataUtil;
+import com.lmiot.cameralibrary.Util.JumpActivityUtils;
 import com.lmiot.cameralibrary.Util.ToastUtil;
 import com.lmiot.cameralibrary.Util.WifiConnectionUtil;
-import com.lmiot.cameralibrary.zxing.CaptureActivity;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import mediatek.android.IoTManager.IoTManagerNative;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 import voice.encoder.DataEncoder;
 import voice.encoder.VoicePlayer;
 import vstc2.nativecaller.NativeCaller;
@@ -91,10 +81,9 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
     private String currentBssid;
 
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
 
-    private List<CameraBean> mCameraList = new ArrayList<>();
+    private Map<String,String> mSearchList = new HashMap<>();
     private SearchAdapter mSearchAdapter;
     private WifiConnectionUtil mWifiConnectionUtil;
     private String mWifiName;
@@ -103,11 +92,6 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
     private Intent mIntent;
     private String mCameraResult;
     private String mPasswordText = "";
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private EditText mIdCameraId;
     private EditText mIdCameraName;
     private EditText mIdCameraPs;
@@ -116,6 +100,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
     private ListView mIdAddDeviceListview;
     private TextView mIdRestarSearch;
     private RelativeLayout mIdSearchLayout;
+    private LmiotTitleBar mLmiotTitleBar;
 
 
     @Override
@@ -166,11 +151,18 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
                     break;
                 case "zxing": //二维码扫描
                     mIdRestarSearch.setVisibility(View.GONE);
-                    mIntent = new Intent(AddCameraActivity.this, CaptureActivity.class);
-                    mIntent.putExtra("camera", "camera");
-                    startActivity(mIntent);
-                    AddCameraActivity.this.finish();
-                    Log.d("AddCameraActivity", "跳转到新页面");
+
+
+                    ZxingSdk.startScan(AddCameraActivity.this, new ZxingSdk.onResultLitener() {
+                        @Override
+                        public void result(String result) {
+                            mIntent = new Intent(AddCameraActivity.this, AddCameraActivity.class);
+                            mIntent.putExtra("cameraResult", result);
+                            startActivity(mIntent);
+                            overridePendingTransition(R.anim.move_left_out_activity, R.anim.move_right_in_activity);
+                        }
+                    });
+
                     break;
             }
         }
@@ -182,10 +174,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
         super.onResume();
 
         mCameraResult = getIntent().getStringExtra("cameraResult");
-        Log.d("AddCameraActivity", "二维码扫描结果00：" + mCameraResult);
         if (mCameraResult != null) {
-
-            Log.d("AddCameraActivity", "二维码扫描结果：" + mCameraResult);
             mIdZxingLayout.setVisibility(View.VISIBLE);
             mIdCameraId.setText(mCameraResult);
 
@@ -493,11 +482,6 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      * 开始搜索局域网设备
      */
     private void StartSearchUdp() {
-
-        if (mCameraList != null) {
-            mCameraList.clear();
-        }
-        mCameraList = new ArrayList<>();
         stopCameraPPPP();
         startSearch();
 
@@ -518,11 +502,8 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      */
     private void InitView() {
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
+
+
         mIdCameraId = findViewById(R.id.id_camera_id);
         mIdCameraName = findViewById(R.id.id_camera_name);
         mIdCameraPs = findViewById(R.id.id_camera_ps);
@@ -532,16 +513,27 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
         mIdRestarSearch = findViewById(R.id.id_restar_search);
         mIdSearchLayout = findViewById(R.id.id_search_layout);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mIdRestarSearch.setOnClickListener(this);
         mIdCameraSave.setOnClickListener(this);
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
+            @Override
+            public void onMenuClick(View view) {
 
-        mIdTitle.setText("添加摄像头");
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
+
 
         progressdlg = new ProgressDialog(this);
         progressdlg.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -559,42 +551,19 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      * 添加二维码扫描的摄像头
      */
     private void SaveZxingCamera() {
-        try {
+
             String cameraID = mIdCameraId.getText().toString();
             String cameraPs = mIdCameraPs.getText().toString();
-            String makeCameID = TimeUtils.getCurrentDateInt() + mCameraList.size();
+
 
             if (TextUtils.isEmpty(cameraID)) {
                 ToastUtil.ToastMessage(AddCameraActivity.this, "内容不能为空");
                 return;
             }
-            List<CameraRespone.ContentBean> getCameraList = SPUtil.GetCameraList();
-            Log.d("AddCameraActivity", "原ID000:" + cameraID);
 
-            if (getCameraList != null) {
-                if (getCameraList.size() > 0) {
-                    for (CameraRespone.ContentBean di : getCameraList) {
-                        Log.d("AddCameraActivity", "原ID1111:" + di.getStrName());
-                        if (di.getStrName().equals(cameraID)) {
-                            ToastUtil.ToastMessage(AddCameraActivity.this, "该摄像头已经添加");
-                            finish();
-                            return;
-                        }
-                    }
+        SqlUtil.getInstance().add(new CamerBean(null,cameraID,DataUtil.getUerName(),cameraID,cameraPs,false));
+        JumpActivityUtils.JumpToActivity(this,CameraDevices.class,true,true);
 
-                }
-
-            }
-
-
-            CameraRespone.ContentBean deviceInfo = new CameraRespone.ContentBean();
-            deviceInfo.setNDevID(Integer.parseInt(makeCameID));
-            deviceInfo.setStrName(cameraID);
-            deviceInfo.setStrPassword(cameraPs);
-            SaveCameraToServer(deviceInfo);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -639,8 +608,14 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      */
     private void ShowSearchGridView() {
 
-        Log.d("AddCameraActivity", "显示查找到的设备");
-        mSearchAdapter = new SearchAdapter();
+        List<CamerBean> camerBeanList=new ArrayList<>();
+        for(Map.Entry<String, String> map:mSearchList.entrySet()){
+
+            camerBeanList.add(new CamerBean(null,map.getKey(),DataUtil.getUerName(),map.getValue(),"",false));
+
+        }
+
+        mSearchAdapter = new SearchAdapter(camerBeanList);
         mIdAddDeviceListview.setAdapter(mSearchAdapter);
 
     }
@@ -649,10 +624,8 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
     public void onClick(View view) {
 
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.id_restar_search) {
+            if (i == R.id.id_restar_search) {
             startSearch();
 
         } else if (i == R.id.id_camera_save) {
@@ -669,9 +642,16 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
 
     private class SearchAdapter extends BaseAdapter {
 
+
+        List<CamerBean> camerBeanList;
+
+        public SearchAdapter(List<CamerBean> camerBeanList) {
+            this.camerBeanList = camerBeanList;
+        }
+
         @Override
         public int getCount() {
-            return mCameraList.size();
+            return camerBeanList.size();
         }
 
         @Override
@@ -693,31 +673,20 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
             ImageView add = (ImageView) v.findViewById(R.id.id_add);
 
             img.setBackgroundResource(R.drawable.camera);
-
-            name.setText(mCameraList.get(position).getStrName());
+            name.setText(camerBeanList.get(position).getCameraID());
 
             add.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    CamerBean search = SqlUtil.getInstance().search(camerBeanList.get(position).getCameraID());
 
-
-                    List<CameraRespone.ContentBean> getCameraList = SPUtil.GetCameraList();
-                    if (getCameraList == null) {
-                        getCameraList = new ArrayList<CameraRespone.ContentBean>();
+                    if(search!=null){
+                        ToastUtil.ToastMessage(AddCameraActivity.this,"该摄像头已经被添加!");
+                        return;
                     }
 
-                    for (CameraRespone.ContentBean di : getCameraList) {
-                        if (di.getStrName().equals(mCameraList.get(position).getStrName())) {
-                            ToastUtil.ToastMessage(AddCameraActivity.this, "该摄像头已经添加");
-                            return;
-                        }
-                    }
-
-
-                    CameraRespone.ContentBean deviceInfo = new CameraRespone.ContentBean();
-                    deviceInfo.setNDevID(Integer.parseInt(mCameraList.get(position).getStrDeviceID()));
-                    deviceInfo.setStrName(mCameraList.get(position).getStrName());
-                    SaveCameraToServer(deviceInfo);
+                    SqlUtil.getInstance().add(new CamerBean(null,camerBeanList.get(position).getCameraID(),DataUtil.getUerName(),camerBeanList.get(position).getCameraName(),"",false));
+                       finish();
 
                 }
             });
@@ -726,59 +695,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
         }
     }
 
-    /**
-     * 保存摄像头id 到服务器
-     */
-    private void SaveCameraToServer(CameraRespone.ContentBean deviceInfo_get) {
 
-        try {
-            String sava_URL = SPUtil.AppendServerUrl("/devicethird/addcameralist");
-            List<CameraRespone.ContentBean> deviceInfoList = new ArrayList<>();
-            deviceInfoList.add(deviceInfo_get);
-            SaveCameraBean saveCameraBean = new SaveCameraBean();
-            saveCameraBean.setSessionID(SPUtil.getSessionID());
-            saveCameraBean.setContent(deviceInfoList);
-
-
-            String jsonData = new Gson().toJson(saveCameraBean);
-            OkHttpClient mOkHttpClient = new OkHttpClient();
-            RequestBody requestBody = RequestBody.create(JSON, jsonData);
-            Request request = new Request.Builder()
-                    .url(sava_URL)
-                    .post(requestBody)
-                    .build();
-            mOkHttpClient.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) {
-                    String s = null;
-                    try {
-                        s = response.body().string();
-                        Log.d("SearchDevice", s);
-                        NormalResponse normalResponse = new Gson().fromJson(s, NormalResponse.class);
-                        if (normalResponse.getErrcode().equals("0")) {
-                            // ToastUtil.ToastMessage(AddCameraActivity.this, "保存成功!");
-                            finish();
-
-                        } else {
-                            Log.d("SearchDevice", "摄像头数据保存失败");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
 
 
     public static String int2ip(long ipInt) {
@@ -850,63 +767,13 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      **/
     @Override
     public void callBackSearchResultData(int cameraType, String strMac, String strName, String strDeviceID, String strIpAddr, int port) {
-
         Log.e("AddCameraActivity", "找到摄像头：" + strDeviceID + ":" + strName);
-      /*  if (!listAdapter.AddCamera(strMac, strName, strDeviceID)) {
-            return;
-        }
 
-
-*/
-
-
-        if (mCameraList != null) {
-
-
-            if (mCameraList.size() == 0) {
-                //随机生成一个唯一ID
-                String makeCameID = TimeUtils.getCurrentDateInt() + mCameraList.size();
-                CameraBean cameraBean = new CameraBean();
-                cameraBean.setStrDeviceID(makeCameID);
-                cameraBean.setStrName(strDeviceID);
-                mCameraList.add(cameraBean);
-
-
-            } else {
-
-                if (CheckCameraInfo(strDeviceID)) {
-                    //随机生成一个唯一ID
-                    String makeCameID = TimeUtils.getCurrentDateInt() + mCameraList.size();
-                    CameraBean cameraBean = new CameraBean();
-                    cameraBean.setStrDeviceID(makeCameID);
-                    cameraBean.setStrName(strDeviceID);
-                    mCameraList.add(cameraBean);
-                }
-
-            }
-
-
-        }
+        mSearchList.put(strDeviceID,strDeviceID);
 
     }
 
 
-    /**
-     * 检查是否有重复的设备
-     */
-    private boolean CheckCameraInfo(String strDeviceID) {
-        // TODO Auto-generated method stub
-
-        int size = mCameraList.size();
-        int i;
-        for (i = 0; i < size; i++) {
-            String strDeviceID1 = mCameraList.get(i).getStrName();
-            if (strDeviceID.equals(strDeviceID1)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
 
     @Override

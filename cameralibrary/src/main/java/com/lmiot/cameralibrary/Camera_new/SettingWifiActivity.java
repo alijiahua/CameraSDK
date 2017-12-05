@@ -39,6 +39,7 @@ import com.lmiot.cameralibrary.Camera_new.bean.WifiBean;
 import com.lmiot.cameralibrary.Camera_new.bean.WifiScanBean;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -230,11 +231,6 @@ public class SettingWifiActivity extends BaseActivity implements
             }
         }
     };
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mSsid;
     private TextView mWifiTvName;
     private ImageView mWifiImgDrop;
@@ -250,6 +246,7 @@ public class SettingWifiActivity extends BaseActivity implements
     private LinearLayout mWifiPwdView;
     private ListView mWifiListview;
     private ScrollView mScrollView1;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onPause() {
@@ -290,12 +287,6 @@ public class SettingWifiActivity extends BaseActivity implements
 
     private void findView() {
 
-
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mSsid = findViewById(R.id.ssid);
         mWifiTvName = findViewById(R.id.wifi_tv_name);
         mWifiImgDrop = findViewById(R.id.wifi_img_drop);
@@ -311,17 +302,27 @@ public class SettingWifiActivity extends BaseActivity implements
         mWifiPwdView = findViewById(R.id.wifi_pwd_view);
         mWifiListview = findViewById(R.id.wifi_listview);
         mScrollView1 = findViewById(R.id.scrollView1);
-
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
         mWifiBtnManger.setOnClickListener(this);
 
-
-        mIdTitle.setText("Wifi设置");
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setText("完成");
         mWifiCboxShowPwd.setOnCheckedChangeListener(this);
+
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+                setWifi();
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
     }
 
@@ -542,14 +543,9 @@ public class SettingWifiActivity extends BaseActivity implements
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
-            overridePendingTransition(R.anim.out_to_right, R.anim.in_from_left);
 
-        } else if (i == R.id.tv_modify) {
-            setWifi();
 
-        } else if (i == R.id.wifi_btn_manger) {
+            if (i == R.id.wifi_btn_manger) {
             mAdapter.clearWifi();
             mAdapter.notifyDataSetChanged();
             mWifiListview.setVisibility(View.GONE);

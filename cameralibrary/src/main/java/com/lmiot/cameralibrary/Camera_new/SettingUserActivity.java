@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.lmiot.cameralibrary.Camera_new.BridgeService.UserInterface;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
+
 import vstc2.nativecaller.NativeCaller;
 
 public class SettingUserActivity extends BaseActivity implements UserInterface,View.OnClickListener{
@@ -98,17 +100,12 @@ public class SettingUserActivity extends BaseActivity implements UserInterface,V
             }
         }
     };
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mTextView0;
     private EditText mEditName;
     private TextView mTextView1;
     private EditText mEditPwd;
     private CheckBox mCboxShowPwd;
-
+    private LmiotTitleBar mLmiotTitleBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,27 +146,31 @@ public class SettingUserActivity extends BaseActivity implements UserInterface,V
 
     private void findView() {
 
-
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mTextView0 = findViewById(R.id.textView0);
         mEditName = findViewById(R.id.edit_name);
         mTextView1 = findViewById(R.id.textView1);
         mEditPwd = findViewById(R.id.edit_pwd);
         mCboxShowPwd = findViewById(R.id.cbox_show_pwd);
-
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
         mCboxShowPwd.setOnClickListener(this);
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mIdTitle.setText("修改密码");
-        mTvModify.setText("保存");
-        mIvAdd.setVisibility(View.GONE);
+            @Override
+            public void onMenuClick(View view) {
+                setUser();
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
+
 
     }
 
@@ -227,13 +228,8 @@ public class SettingUserActivity extends BaseActivity implements UserInterface,V
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.tv_modify) {
-            setUser();
-
-        } else if (i == R.id.cbox_show_pwd) {
+            if (i == R.id.cbox_show_pwd) {
             if (mCboxShowPwd.isChecked()) {
                 mEditPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             } else {

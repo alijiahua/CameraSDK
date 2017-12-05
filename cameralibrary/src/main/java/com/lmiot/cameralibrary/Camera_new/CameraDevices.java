@@ -17,22 +17,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-import com.lmiot.cameralibrary.Camera_new.bean.CameraRespone;
-import com.lmiot.cameralibrary.Camera_new.bean.ResponedBean;
 import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
-import com.lmiot.cameralibrary.Util.DialogUtils;
+import com.lmiot.cameralibrary.SQL.CamerBean;
+import com.lmiot.cameralibrary.SQL.SqlUtil;
+import com.lmiot.cameralibrary.Util.DataUtil;
 import com.lmiot.cameralibrary.Util.JumpActivityUtils;
 import com.lmiot.cameralibrary.Util.LayoutDialogUtil;
-import com.lmiot.cameralibrary.Util.SPUtil;
 import com.lmiot.cameralibrary.Util.ToastUtil;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
-import okhttp3.Call;
 
 
 public class CameraDevices extends BaseActivity implements View.OnClickListener {
@@ -40,59 +36,49 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
 
     private Intent mIntent;
     private myAdapter mMyAdapter;
-    private List<CameraRespone.ContentBean> mCameracontent;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
+    private List<CamerBean> mCameracontent;
     private Button mIdAddBt;
     private LinearLayout mIdAddLayout;
     private GridView mIdDeviceGridview;
+    private LmiotTitleBar mLmiotTitleBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_camera_new);
-        String sessionID = SPUtil.getSessionID();
-        if(TextUtils.isEmpty(SPUtil.getSessionID())){
-            ToastUtil.ToastMessage(CameraDevices.this,"您还没设置sessionID!");
-            finish();
-        }
 
-
-
+        SqlUtil.getInstance().initDbHelp(this); //数据库初始化
+        DataUtil.setUerName("123456");
         initView();
 
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
 
     private void initView() {
-
-
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
         mIdAddBt = findViewById(R.id.id_add_bt);
         mIdAddLayout = findViewById(R.id.id_add_layout);
         mIdDeviceGridview = findViewById(R.id.id_device_gridview);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mIvAdd.setOnClickListener(this);
         mIdAddBt.setOnClickListener(this);
 
 
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mIdTitle.setText("云摄像头");
-        mTvModify.setVisibility(View.GONE);
+            @Override
+            public void onMenuClick(View view) {
+                AddDialog();
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
 
     }
@@ -110,46 +96,16 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
      */
     private void GetCameraDevices() {
 
-        try {
-            String getCameraURL = SPUtil.AppendServerUrl("/devicethird/qrycameralist");
-            OkHttpUtils.post()
-                    .url(getCameraURL)
-                    .addParams("sessionID", SPUtil.getSessionID())
-                    .build()
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onError(Call call, Exception e) {
-                            e.printStackTrace();
-                        }
+        mCameracontent = SqlUtil.getInstance().searchAll();
+        Log.d("CameraDevices", "mCameracontent.size():" + mCameracontent.size());
 
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("MainActivity", "摄像头数据:" + response);
 
-                            resloveData(response);
-
-                        }
-                    });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Log.d("CameraDevices", new Gson().toJson(mCameracontent));
+        ShowListView();
 
 
     }
 
-    private void resloveData(String response) {
-        try {
-            CameraRespone cameraRespone = new Gson().fromJson(response, CameraRespone.class);
-
-            if (cameraRespone.getErrcode().equals("0")) {
-                mCameracontent = cameraRespone.getContent();
-                ShowListView();
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 显示listview
@@ -175,10 +131,8 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.iv_add || i == R.id.id_add_bt) {
+            if ( i==R.id.id_add_bt) {
             AddDialog();
 
         }
@@ -212,30 +166,23 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
             TextView textView = (TextView) v.findViewById(R.id.video_devicename_id);
             TextView deviceState = (TextView) v.findViewById(R.id.video_connectstate_id);
 
-            final String strName = mCameracontent.get(position).getStrName();
-            String nickName = mCameracontent.get(position).getNickName();
-            if (TextUtils.isEmpty(nickName)) {
-                textView.setText(strName);
-            } else {
-                textView.setText(nickName);
-            }
+
+             final CamerBean camerBean = mCameracontent.get(position);
+            textView.setText(camerBean.getCameraName());
 
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
-                    String cameraPs = SPUtil.GetCameraPs(CameraDevices.this, strName);
-                    Log.d("myAdapter", "保存的密码：" + cameraPs);
-
-                    if (cameraPs == null) {
-                        ShowPsDialog(strName);
-                    } else {
-                        ConnectCameraData(strName, cameraPs);
-
-
+                    if(camerBean.getPsRight()){  //已经存过密码
+                        ConnectCameraData(camerBean.getCameraID(), camerBean.getCameraPassword());
                     }
+                    else{
+                        ShowPsDialog(camerBean);
+                    }
+
+
 
                 }
             });
@@ -245,7 +192,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
                 @Override
                 public boolean onLongClick(View v) {
 
-                    SetCameraDialog(mCameracontent.get(position));
+                    SetCameraDialog(camerBean);
                     return true;
                 }
             });
@@ -258,9 +205,9 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     /**
      * 输入密码对话框
      *
-     * @param strName
+     * @param camerBean
      */
-    private void ShowPsDialog(final String strName) {
+    private void ShowPsDialog(final CamerBean camerBean) {
         final Dialog dailog = LayoutDialogUtil.createDailog(CameraDevices.this, R.layout.dialog_change_edit_layout);
         dailog.setCancelable(false);
         TextView title = (TextView) dailog.findViewById(R.id.id_title);
@@ -275,12 +222,8 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 String pass = edit.getText().toString();
-                if (TextUtils.isEmpty(pass)) {
-                    Toast.makeText(CameraDevices.this, R.string.no_empty, Toast.LENGTH_SHORT).show();
-                } else {
-                    ConnectCameraData(strName, pass);
-                    dailog.dismiss();
-                }
+                ConnectCameraData(camerBean.getCameraID(), pass);
+                dailog.dismiss();
 
             }
         });
@@ -298,7 +241,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     /**
      * 长按设置摄像头
      */
-    private void SetCameraDialog(final CameraRespone.ContentBean deviceInfo) {
+    private void SetCameraDialog(final CamerBean camerBean) {
 
         final Dialog dialog = LayoutDialogUtil.createBottomDailog(CameraDevices.this, R.layout.dialog_change_fast_scene_layout);
         TextView bt01 = (TextView) dialog.findViewById(R.id.id_bt01);
@@ -317,7 +260,9 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         bt01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RenameCamera(deviceInfo.getStrName(), deviceInfo.getNickName());
+                RenameCamera(camerBean);
+
+
                 dialog.dismiss();
             }
         });
@@ -326,8 +271,8 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         bt02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleCameraData(deviceInfo.getNDevID() + "");
-                SPUtil.SetCameraPs(CameraDevices.this, deviceInfo.getStrName(), null);
+               SqlUtil.getInstance().del(camerBean.getCameraID());
+                GetCameraDevices();
                 dialog.dismiss();
             }
         });
@@ -345,9 +290,9 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     /**
      * 重命名摄像头
      *
-     * @param nickName
+     * @param camerBean
      */
-    private void RenameCamera(final String strName, final String nickName) {
+    private void RenameCamera(final CamerBean camerBean) {
 
         final Dialog dailog0 = LayoutDialogUtil.createDailog(CameraDevices.this, R.layout.dialog_zone_layout);
         final TextView mtitle0 = (TextView) dailog0.findViewById(R.id.id_title);
@@ -355,7 +300,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         Button cancel = (Button) dailog0.findViewById(R.id.id_cancel);
         final Button sure = (Button) dailog0.findViewById(R.id.id_sure);
 
-        editText0.setText(nickName);
+        editText0.setText(camerBean.getCameraName());
         editText0.setSelection(editText0.getText().length());
         mtitle0.setText("修改名称");
         sure.setText("完成");
@@ -372,7 +317,9 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
             public void onClick(View v) {
                 String trim = editText0.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim)) {
-                    RenameDevice(strName, trim);
+                    camerBean.setCameraName(trim);
+                    SqlUtil.getInstance().update(camerBean);
+                    GetCameraDevices();
 
                     dailog0.dismiss();
                 } else {
@@ -385,46 +332,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     }
 
 
-    /**
-     * 重命名
-     *
-     * @param strName
-     */
-    private void RenameDevice(String strName, String newName) {
 
-        DialogUtils.ShowDialog(CameraDevices.this);
-        String url = SPUtil.AppendServerUrl("/devicethird/renamecamera");
-        OkHttpUtils.post()
-                .url(url)
-                .addParams("sessionID", SPUtil.getSessionID())
-                .addParams("strName", strName)
-                .addParams("newName", newName)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e) {
-                        Log.d("CameraDevices", "重命名错误：" + e.getMessage());
-                        DialogUtils.HiddenDialog();
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        DialogUtils.HiddenDialog();
-                        Log.d("CameraDevices", "重命名结果：" + response);
-                        ResponedBean responedBean = new Gson().fromJson(response, ResponedBean.class);
-                        if (responedBean.getErrcode().equals("0")) {
-                            ToastUtil.ToastMessage(getApplicationContext(), "重命名成功！");
-                            GetCameraDevices();
-                        } else {
-                            ToastUtil.ToastMessage(getApplicationContext(), "重命名失败：" + responedBean.getErrmsg());
-                        }
-
-                    }
-                });
-
-
-    }
 
 
     /**
@@ -435,43 +343,12 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         SystemValue.deviceName = "admin";
         SystemValue.deviceId = mCameraID;
         SystemValue.devicePass = mCameraPs;
-
         JumpActivityUtils.JumpToActivity(CameraDevices.this, PlayActivity.class, false, true);
 
 
     }
 
 
-    /**
-     * 删除摄像头数据
-     */
-    private void DeleCameraData(String CameraID) {
-        String del_URL = SPUtil.AppendServerUrl("/devicethird/delcamera");
-
-        OkHttpUtils.post()
-                .url(del_URL)
-                .addParams("sessionID", SPUtil.getSessionID())
-                .addParams("devID", CameraID)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("SearchDevice", "删除结果：" + response);
-                        ResponedBean responedBean = new Gson().fromJson(response, ResponedBean.class);
-                        if (responedBean.getErrcode().equals("0")) {
-                            Toast.makeText(CameraDevices.this, R.string.del_success, Toast.LENGTH_SHORT).show();
-                            GetCameraDevices();
-                        }
-
-                    }
-                });
-
-    }
 
 
 
@@ -481,7 +358,6 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
      */
     private void AddDialog() {
         mIdAddLayout.setVisibility(View.GONE);
-        SPUtil.SetCameraList(mCameracontent); //保存目前的已经添加的摄像头
         final Dialog dialog = LayoutDialogUtil.createBottomDailog(CameraDevices.this, R.layout.dialog_change_fast_scene_layout);
         TextView bt01 = (TextView) dialog.findViewById(R.id.id_bt01);
         View line1 = dialog.findViewById(R.id.id_line1);

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.lmiot.cameralibrary.Camera_new.CameraDevices;
-import com.lmiot.cameralibrary.Util.SPUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SPUtil.setSessionID("963d9039e6874be68f4bae6128ad5cc");
                 startActivity(new Intent(MainActivity.this, CameraDevices.class));
             }
         });

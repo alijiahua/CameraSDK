@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.lmiot.cameralibrary.Camera_new.adapter.ShowLocPicGridViewAdapter;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -57,16 +58,12 @@ public class LocalVideoGridActivity extends BaseActivity implements
         }
     };
     private LinearLayout DelBottomLayout;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private GridView mGridView1;
     private Button mSelectall;
     private Button mSelectreverse;
     private Button mDelete;
     private LinearLayout mDelBottomLayout;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onPause() {
@@ -242,26 +239,49 @@ public class LocalVideoGridActivity extends BaseActivity implements
     private void findView() {
 
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mGridView1 = findViewById(R.id.gridView1);
         mSelectall = findViewById(R.id.selectall);
         mSelectreverse = findViewById(R.id.selectreverse);
         mDelete = findViewById(R.id.delete);
         mDelBottomLayout = findViewById(R.id.del_bottom_layout);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mSelectall.setOnClickListener(this);
         mSelectreverse.setOnClickListener(this);
         mDelete.setOnClickListener(this);
 
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setVisibility(View.GONE);
-        mIdTitle.setText(strDate + "/" + arrayList.size());
+
+
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setTitle(strDate + "/" + arrayList.size());
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                if (isEditing) {
+                    seletNum = 0;
+                    isEditing = false;
+                    DelBottomLayout.setVisibility(View.GONE);
+                    ArrayList<Map<String, Object>> arrayPics = mAdapter
+                            .getArrayPics();
+                    for (int i = 0; i < arrayPics.size(); i++) {
+                        Map<String, Object> map = arrayPics.get(i);
+                        map.put("status", 0);
+                    }
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    finish();
+                }
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
     }
 
     private void getDataFromOther() {
@@ -408,23 +428,9 @@ public class LocalVideoGridActivity extends BaseActivity implements
     @Override
     public void onClick(View view) {
         int i1 = view.getId();
-        if (i1 == R.id.iv_back || i1 == R.id.tv_back) {
-            if (isEditing) {
-                seletNum = 0;
-                isEditing = false;
-                DelBottomLayout.setVisibility(View.GONE);
-                ArrayList<Map<String, Object>> arrayPics = mAdapter
-                        .getArrayPics();
-                for (int i = 0; i < arrayPics.size(); i++) {
-                    Map<String, Object> map = arrayPics.get(i);
-                    map.put("status", 0);
-                }
-                mAdapter.notifyDataSetChanged();
-            } else {
-                finish();
-            }
 
-        } else if (i1 == R.id.selectall) {
+
+            if (i1 == R.id.selectall) {
             ArrayList<Map<String, Object>> arrayPics = mAdapter.getArrayPics();
             for (int i = 0; i < arrayPics.size(); i++) {
                 Map<String, Object> map = arrayPics.get(i);

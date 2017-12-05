@@ -28,6 +28,8 @@ import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.Camera_new.utils.DatabaseUtil;
 import com.lmiot.cameralibrary.Camera_new.utils.MyRender;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -84,11 +86,6 @@ public class ShowLocalVideoActivity extends BaseActivity implements
             }
         }
     };
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private GLSurfaceView mGlsurfaceview;
     private ProgressBar mProgressBar1;
     private TextView mSumtime;
@@ -98,6 +95,7 @@ public class ShowLocalVideoActivity extends BaseActivity implements
     private Button mBtnPlay;
     private Button mBtnRight;
     private RelativeLayout mShowbottom;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,11 +126,6 @@ public class ShowLocalVideoActivity extends BaseActivity implements
     private void findView() {
 
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mGlsurfaceview = findViewById(R.id.glsurfaceview);
         mProgressBar1 = findViewById(R.id.progressBar1);
         mSumtime = findViewById(R.id.sumtime);
@@ -144,19 +137,32 @@ public class ShowLocalVideoActivity extends BaseActivity implements
         mShowbottom = findViewById(R.id.showbottom);
 
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
         mBtnLeft.setOnClickListener(this);
         mBtnRight.setOnClickListener(this);
         mBtnPlay.setOnClickListener(this);
 
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                flag = false;
+                finish();
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
+
         wh = getWindowManager().getDefaultDisplay().getWidth();
         ht = getWindowManager().getDefaultDisplay().getHeight();
-        mIdTitle.setText("录像");
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setVisibility(View.GONE);
 
         myRender = new MyRender(mGlsurfaceview);
         mGlsurfaceview.setRenderer(myRender);
@@ -240,11 +246,9 @@ public class ShowLocalVideoActivity extends BaseActivity implements
     public void onClick(View view) {
 
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            flag = false;
-            finish();
 
-        } else if (i == R.id.btn_left) {//if (position < arrayList.size() - 1) {
+
+            if (i == R.id.btn_left) {//if (position < arrayList.size() - 1) {
             //	playNextFile(position++);
             //} else {
             //	showToast(R.string.playvideo_no_next);

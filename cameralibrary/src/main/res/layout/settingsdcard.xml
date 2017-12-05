@@ -6,12 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/new_title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_heightPercent="8%h"
-        app:layout_widthPercent="100%w"
+    <com.lmiot.tiblebarlibrary.LmiotTitleBar
+        android:id="@+id/id_lmiot_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tv_title="SD卡设置"
+        app:show_iv_menu="false"
+        app:show_tv_menu="true"
+        app:tv_menu="完成"
+        app:titlebar_bg="@color/colorAccent"
+        app:text_color_title="@color/white"
+        app:text_color_menu="@color/white"
+        app:show_line="true"
         />
 
     <ScrollView

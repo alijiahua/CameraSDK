@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.lmiot.cameralibrary.Camera_new.bean.DefenseConstant;
 import com.lmiot.cameralibrary.Camera_new.utils.SensorTimeUtil;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -39,11 +40,6 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
     private int type = 0;
     private int value, key;
     private int absValue;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mTimingTextView1;
     private TimePicker mTimingTimePicker1;
     private TextView mTimingTextView2;
@@ -59,6 +55,7 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
     private Button mTimingStartDelete;
     private Button mTimingStartSave;
     private LinearLayout mTimingEditLayout;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +95,6 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
 
     //初始化数据
     public void findview() {
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mTimingTextView1 = findViewById(R.id.timing_textView1);
         mTimingTimePicker1 = findViewById(R.id.timing_timePicker1);
         mTimingTextView2 = findViewById(R.id.timing_textView2);
@@ -119,11 +111,8 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
         mTimingStartSave = findViewById(R.id.timing_start_save);
         mTimingEditLayout = findViewById(R.id.timing_edit_layout);
 
- mIvBack.setOnClickListener(this);
- mTvBack.setOnClickListener(this);
  mTimingStartDelete.setOnClickListener(this);
  mTimingStartSave.setOnClickListener(this);
- mTvModify.setOnClickListener(this);
  mTimingId1.setOnClickListener(this);
  mTimingId2.setOnClickListener(this);
  mTimingId3.setOnClickListener(this);
@@ -133,10 +122,24 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
  mTimingId7.setOnClickListener(this);
 
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mIdTitle.setText("添加时段");
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setText("保存");
+            @Override
+            public void onMenuClick(View view) {
+                checkTime();
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
         mTimingTextView1.setText(getResources().getString(
                 R.string.camera_defense_starttime)
@@ -204,13 +207,13 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
         });
 
         if (type == 0) {
-            mIdTitle.setText(getResources().getString(
+            mLmiotTitleBar.setTitle(getResources().getString(
                     R.string.add_valid_time));
         } else {
             mTimingEditLayout.setVisibility(View.VISIBLE);
-            mIdTitle.setText(getResources().getString(
+            mLmiotTitleBar.setTitle(getResources().getString(
                     R.string.edit_valid_time));
-            mTvModify.setVisibility(View.GONE);
+            mLmiotTitleBar.showTvMenu(false);
             if (value != 0) {
                 int bStarttime = value & 0x7ff;
                 int bEndTime = (value >> 12) & 0x7ff;
@@ -555,10 +558,8 @@ public class SCameraSetPlanVideoTiming extends BaseActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.tv_modify || i == R.id.timing_start_save) {
+            if ( i == R.id.timing_start_save) {
             checkTime();
 
         } else if (i == R.id.timing_start_delete) {

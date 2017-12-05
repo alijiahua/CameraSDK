@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -25,6 +25,11 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    greendao{
+        schemaVersion 3   //数据库版本，升级时修改即可
+       // targetGenDir 'src/main/java' //生成位置
+    }
 }
 
 dependencies {
@@ -34,8 +39,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
-    compile 'com.zhy:okhttputils:2.3.9'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.zhy:percent-support-extends:1.1.1'
     compile 'com.github.alijiahua:LoadDialog:1.7'
+    compile 'com.github.lmiot:LmiotZxingSDK:1.0'
+    compile 'org.greenrobot:greendao:3.2.2'
+    compile 'com.github.lmiot:TitleBarSDK:1.5'
 }

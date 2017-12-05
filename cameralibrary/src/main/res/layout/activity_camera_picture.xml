@@ -6,15 +6,22 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context=".Activity.Setting.OtherUserActivity">
+	>
 
 
-	<include
-		layout="@layout/new_title"
-		android:layout_width="0dp"
-		android:layout_height="0dp"
-		app:layout_heightPercent="8%h"
-		app:layout_widthPercent="100%w"
+	<com.lmiot.tiblebarlibrary.LmiotTitleBar
+		android:id="@+id/id_lmiot_title_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:tv_title="图片列表"
+		app:show_iv_menu="false"
+		app:show_tv_menu="false"
+		app:iv_back="@drawable/title_back"
+		app:iv_menu="@drawable/add"
+		app:titlebar_bg="@color/colorAccent"
+		app:text_color_title="@color/white"
+		app:text_color_menu="@color/white"
+		app:show_line="true"
 		/>
 	<ListView
 		android:id="@+id/id_picture_listview"

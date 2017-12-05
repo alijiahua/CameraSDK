@@ -25,6 +25,7 @@ import com.lmiot.cameralibrary.Camera_new.adapter.PlayBackAdapter;
 import com.lmiot.cameralibrary.Camera_new.bean.PlayBackBean;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +38,7 @@ import vstc2.nativecaller.NativeCaller;
  *
  * */
 public class PlayBackTFActivity extends BaseActivity implements
-        OnItemClickListener, PlayBackTFInterface, OnClickListener {
+        OnItemClickListener, PlayBackTFInterface {
 
 
     private ProgressDialog progressDialog;
@@ -87,13 +88,9 @@ public class PlayBackTFActivity extends BaseActivity implements
     };
 
     private Handler handler = new Handler();
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mNoVideo;
     private ListView mListview;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,21 +182,27 @@ public class PlayBackTFActivity extends BaseActivity implements
     private void findView() {
 
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mNoVideo = findViewById(R.id.no_video);
         mListview = findViewById(R.id.listview);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mIdTitle.setText("远程录像");
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
         loadMoreView = getLayoutInflater()
                 .inflate(R.layout.loadmorecount, null);
@@ -313,16 +316,6 @@ public class PlayBackTFActivity extends BaseActivity implements
         }
     }
 
-
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
-
-        }
-
-    }
 }
 
 

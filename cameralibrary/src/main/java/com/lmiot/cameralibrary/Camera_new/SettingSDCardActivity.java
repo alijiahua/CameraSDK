@@ -29,6 +29,7 @@ import com.lmiot.cameralibrary.Camera_new.bean.SdcardBean;
 import com.lmiot.cameralibrary.Camera_new.bean.SwitchBean;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -106,11 +107,6 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
 
         }
     };
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mTvSdTotal;
     private TextView mTvSdRemain;
     private TextView mSdstate;
@@ -129,6 +125,7 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
     private RelativeLayout mRlMovePlan;
     private LinearLayout mRlPlanAll;
     private ScrollView mScrollView1;
+    private LmiotTitleBar mLmiotTitleBar;
 
 
     @Override
@@ -179,11 +176,6 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
 
     private void initView() {
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mTvSdTotal = findViewById(R.id.tv_sd_total);
         mTvSdRemain = findViewById(R.id.tv_sd_remain);
         mSdstate = findViewById(R.id.sdstate);
@@ -204,20 +196,30 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
         mScrollView1 = findViewById(R.id.scrollView1);
 
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mRlAddPlan.setOnClickListener(this);
         mRlAddMovePlan.setOnClickListener(this);
         mCbxRecordTime.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
         mBtnFormat.setOnClickListener(this);
 
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-                mIdTitle.setText("SD卡设置");
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setText("完成");
+            @Override
+            public void onMenuClick(View view) {
+                setSDCardSchedule();
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
+
 
         //计划录像
         adapter = new VideoTimingAdapter(SettingSDCardActivity.this);
@@ -979,10 +981,7 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
-
-        } else if (i == R.id.rl_add_plan) {
+            if (i == R.id.rl_add_plan) {
             Intent it = new Intent(SettingSDCardActivity.this, SCameraSetSDTiming.class);
             it.putExtra("type", 0);
             startActivityForResult(it, 0);
@@ -1001,10 +1000,8 @@ public class SettingSDCardActivity extends BaseActivity implements View.OnClickL
                 sdcardBean.setRecord_time_enable(0);
             }
 
-        } else if (i == R.id.tv_modify) {
-            setSDCardSchedule();
-
-        } else if (i == R.id.btn_format) {
+        }
+        else if (i == R.id.btn_format) {
             showFormatDialog();
 
         }

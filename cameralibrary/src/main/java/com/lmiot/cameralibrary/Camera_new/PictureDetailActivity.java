@@ -7,18 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
-public class PictureDetailActivity extends BaseActivity  implements View.OnClickListener{
+public class PictureDetailActivity extends BaseActivity  {
 
 
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private ImageView mIdImg;
     private ImageView mIdShare;
     private ImageView mIdDel;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,38 +32,33 @@ public class PictureDetailActivity extends BaseActivity  implements View.OnClick
     private void intiView() {
         String picName = getIntent().getStringExtra("PicName");
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mIdImg = findViewById(R.id.id_img);
         mIdShare = findViewById(R.id.id_share);
         mIdDel = findViewById(R.id.id_del);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mIdShare.setOnClickListener(this);
-        mIdDel.setOnClickListener(this);
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setTitle(picName);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mTvBack.setText("返回");
-        mIdTitle.setText(picName);
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+            @Override
+            public void onMenuClick(View view) {
 
-    }
+            }
 
+            @Override
+            public void onTitleClick(View view) {
 
-
-
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.iv_back) {
-        } else if (i == R.id.tv_back) {
-        } else if (i == R.id.id_share) {
-        } else if (i == R.id.id_del) {
-        }
+            }
+        });
 
     }
+
+
+
+
+
 }

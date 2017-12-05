@@ -20,6 +20,7 @@ import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.R;
 import com.lmiot.cameralibrary.Util.DialogUtils;
 import com.lmiot.cameralibrary.Util.ToastUtil;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -145,14 +146,10 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
 
     };
     private String mVer = "";
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private TextView mSysver;
     private TextView mServiceSysverText;
     private TextView mUpdate;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,24 +174,30 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
 
     private void findView() {
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mSysver = findViewById(R.id.sysver);
         mServiceSysverText = findViewById(R.id.service_sysver_text);
         mUpdate = findViewById(R.id.update);
 
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mUpdate.setOnClickListener(this);
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
 
-        mIdTitle.setText("固件升级");
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
     }
 
@@ -222,10 +225,8 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
     public void onClick(View view) {
 
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.update) {
+            if (i == R.id.update) {
             if (download_server != null && filePath_sys != null) {
                 if (download_server.length() == 0 || filePath_sys.length() == 0) {
                     ToastUtil.ToastMessage(this, "信息不完整，无法升级");

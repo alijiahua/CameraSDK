@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 
 /**
@@ -22,16 +23,12 @@ public class SettingActivity extends BaseActivity  implements View.OnClickListen
     private String cameraName;
     private String cameraPwd;
     private Intent mIntent;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private LinearLayout mWifiSetting;
     private LinearLayout mPwdSetting;
     private LinearLayout mSdSetting;
     private LinearLayout mTfSetting;
     private LinearLayout mUpdateFirmware;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,31 +49,39 @@ public class SettingActivity extends BaseActivity  implements View.OnClickListen
 
     //初始化控件
     private void initView() {
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mWifiSetting = findViewById(R.id.wifi_setting);
         mPwdSetting = findViewById(R.id.pwd_setting);
         mSdSetting = findViewById(R.id.sd_setting);
         mTfSetting = findViewById(R.id.tf_setting);
         mUpdateFirmware = findViewById(R.id.update_firmware);
 
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mWifiSetting.setOnClickListener(this);
         mPwdSetting.setOnClickListener(this);
         mSdSetting.setOnClickListener(this);
         mTfSetting.setOnClickListener(this);
         mUpdateFirmware.setOnClickListener(this);
 
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
 
 
-        mIdTitle.setText("设置");
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+
 
     }
 
@@ -94,10 +99,8 @@ public class SettingActivity extends BaseActivity  implements View.OnClickListen
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
 
-        } else if (i == R.id.wifi_setting) {
+            if (i == R.id.wifi_setting) {
             JumpActivity(SettingWifiActivity.class);
 
         } else if (i == R.id.pwd_setting) {

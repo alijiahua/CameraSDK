@@ -53,10 +53,12 @@ import com.lmiot.cameralibrary.Camera_new.utils.CustomVideoRecord;
 import com.lmiot.cameralibrary.Camera_new.utils.MyRender;
 import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.cameralibrary.SQL.CamerBean;
+import com.lmiot.cameralibrary.SQL.SqlUtil;
 import com.lmiot.cameralibrary.Util.DialogUtils;
 import com.lmiot.cameralibrary.Util.LayoutDialogUtil;
-import com.lmiot.cameralibrary.Util.SPUtil;
 import com.lmiot.cameralibrary.Util.ToastUtil;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 import com.zhy.android.percent.support.PercentLinearLayout;
 import com.zhy.android.percent.support.PercentRelativeLayout;
 
@@ -173,11 +175,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     private Intent intentbrod = null;
 
     private int i = 0;//拍照张数标志
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private CheckBox mIrSwitch;
     private ImageView mPtzHoriMirror;
     private ImageView mPtzVertMirror;
@@ -202,6 +199,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     private ImageView mPtzResolution;
     private ImageView mPreset;
     private PercentLinearLayout mIdMain;
+    private LmiotTitleBar mLmiotTitleBar;
 
     /****
      * 退出确定dialog
@@ -621,12 +619,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
 
     private void findView() {
 
-
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mIrSwitch = findViewById(R.id.ir_switch);
         mPtzHoriMirror = findViewById(R.id.ptz_hori_mirror);
         mPtzVertMirror = findViewById(R.id.ptz_vert_mirror);
@@ -650,13 +642,9 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
         mPtzTakeVideos = findViewById(R.id.ptz_take_videos);
         mPtzResolution = findViewById(R.id.ptz_resolution);
         mPreset = findViewById(R.id.preset);
-        mIdMain = findViewById(R.id.id_main);
+        mIdMain = findViewById(R.id.id_camera_main);
 
 
-
-        mIvBack.setOnClickListener(this);
-        mIvAdd.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
         mPtzAudio.setOnClickListener(this);
         mPtzTalk.setOnClickListener(this);
         mPtzHoriMirror.setOnClickListener(this);
@@ -685,9 +673,52 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
 
 
         //显示设备名称
-        mIdTitle.setText(SystemValue.deviceId + "");
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setImageResource(R.drawable.home_setting_white);
+
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setTitle(SystemValue.deviceId + "");
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {  //横屏时点击返回
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    mTopBg.setVisibility(View.VISIBLE);
+                    mIdMain.setVisibility(View.VISIBLE);
+                    mLmiotTitleBar.showLine(true);
+                    mLmiotTitleBar.showIvMenu(true);
+                    mLmiotTitleBar.setTitle(SystemValue.deviceId + "");
+
+                } else { //竖屏时点击返回
+
+                    finish();
+
+                }
+
+
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+                if (mTag == 1) {
+                    mIntent = new Intent(PlayActivity.this, SettingActivity.class);
+                    mIntent.putExtra(ContentCommon.STR_CAMERA_ID, SystemValue.deviceId);
+                    mIntent.putExtra(ContentCommon.STR_CAMERA_NAME, SystemValue.deviceName);
+                    mIntent.putExtra(ContentCommon.STR_CAMERA_PWD, SystemValue.devicePass);
+                    startActivity(mIntent);
+                    overridePendingTransition(R.anim.move_left_out_activity, R.anim.move_right_in_activity);
+                } else {
+                    ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+                }
+
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
+
 
     }
 
@@ -973,36 +1004,8 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     @Override
     public void onClick(View view) {
         int i1 = view.getId();
-        if (i1 == R.id.iv_back || i1 == R.id.tv_back) {
-            if (getRequestedOrientation() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {  //横屏时点击返回
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                mTopBg.setVisibility(View.VISIBLE);
-                mIdMain.setVisibility(View.VISIBLE);
-                mTvBack.setVisibility(View.VISIBLE);
-                mIdTitle.setVisibility(View.VISIBLE);
-                mIvAdd.setVisibility(View.VISIBLE);
 
-            } else { //竖屏时点击返回
-
-                finish();
-
-            }
-
-
-        } else if (i1 == R.id.iv_add) {
-            if (mTag == 1) {
-                mIntent = new Intent(PlayActivity.this, SettingActivity.class);
-                mIntent.putExtra(ContentCommon.STR_CAMERA_ID, SystemValue.deviceId);
-                mIntent.putExtra(ContentCommon.STR_CAMERA_NAME, SystemValue.deviceName);
-                mIntent.putExtra(ContentCommon.STR_CAMERA_PWD, SystemValue.devicePass);
-                startActivity(mIntent);
-                overridePendingTransition(R.anim.move_left_out_activity, R.anim.move_right_in_activity);
-            } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
-            }
-
-
-        } else if (i1 == R.id.ptz_audio) {
+            if (i1 == R.id.ptz_audio) {
             if (mTag == 1) {
                 goAudio();
             } else {
@@ -1797,9 +1800,10 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mTopBg.setVisibility(View.GONE);
         mIdMain.setVisibility(View.GONE);
-        mTvBack.setVisibility(View.GONE);
-        mIdTitle.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+
+        mLmiotTitleBar.showLine(false);
+        mLmiotTitleBar.showIvMenu(false);
+        mLmiotTitleBar.setTitle("");
 
     }
 
@@ -1845,7 +1849,10 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                             String cmd = "get_status.cgi?loginuse=admin&loginpas=" + SystemValue.devicePass
                                     + "&user=admin&pwd=" + SystemValue.devicePass;
 
-                            SPUtil.SetCameraPs(PlayActivity.this, SystemValue.deviceId, SystemValue.devicePass);
+                            CamerBean search = SqlUtil.getInstance().search(SystemValue.deviceId);
+                            search.setCameraPassword(SystemValue.devicePass);
+                            search.setPsRight(true);
+                            SqlUtil.getInstance().update(search);
 
                             NativeCaller.TransferMessage(did, cmd, 1);
 
@@ -1862,7 +1869,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                             break;
                         case ContentCommon.PPPP_STATUS_CONNECT_ERRER://密码错误
                             resid = R.string.pppp_status_pwd_error;
-                            SPUtil.SetCameraPs(PlayActivity.this, SystemValue.deviceId, null);
                             break;
                         default:
                             resid = R.string.pppp_status_unknown; //未知状态

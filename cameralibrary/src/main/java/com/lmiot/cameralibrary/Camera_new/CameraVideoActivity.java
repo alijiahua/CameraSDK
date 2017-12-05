@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -28,19 +29,15 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class CameraVideoActivity extends BaseActivity  implements View.OnClickListener {
+public class CameraVideoActivity extends BaseActivity  {
 
 
 
     private Intent mIntent;
     private String mCameraID;
     private List<File> mList;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private ListView mIdPictureListview;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,25 +54,29 @@ public class CameraVideoActivity extends BaseActivity  implements View.OnClickLi
      */
     private void intiView() {
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mIdPictureListview = findViewById(R.id.id_picture_listview);
-
-
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
 
 
         mCameraID = getIntent().getStringExtra("CameraID");
 
 
-        mTvBack.setText("返回");
-        mIdTitle.setText("视频列表");
-        mTvModify.setVisibility(View.GONE);
-        mIvAdd.setVisibility(View.GONE);
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
     }
 
@@ -110,15 +111,6 @@ public class CameraVideoActivity extends BaseActivity  implements View.OnClickLi
 
     }
 
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
-
-        }
-
-    }
 
     private class PicAdapter extends BaseAdapter {
 

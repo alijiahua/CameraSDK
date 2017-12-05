@@ -17,6 +17,7 @@ import com.lmiot.cameralibrary.Camera_new.utils.ContentCommon;
 import com.lmiot.cameralibrary.Camera_new.utils.DatabaseUtil;
 import com.lmiot.cameralibrary.R;
 import com.lmiot.cameralibrary.Util.ToastUtil;
+import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import java.util.Map;
  *
  **/
 
-public class LocalPictureAndVideoActivity extends BaseActivity implements OnItemClickListener, View.OnClickListener {
+public class LocalPictureAndVideoActivity extends BaseActivity implements OnItemClickListener{
 
 
     private String TAG = "LocalPictureAndVideoActivity";
@@ -45,12 +46,8 @@ public class LocalPictureAndVideoActivity extends BaseActivity implements OnItem
     private boolean isFirstStart = false;
     private LocalPictureAndVideoAdapter mAdapter;
     private ArrayList<MyItem> items;
-    private ImageView mIvBack;
-    private TextView mTvBack;
-    private TextView mIdTitle;
-    private TextView mTvModify;
-    private ImageView mIvAdd;
     private ListView mIdPictureListview;
+    private LmiotTitleBar mLmiotTitleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,17 +126,6 @@ public class LocalPictureAndVideoActivity extends BaseActivity implements OnItem
     }
 
 
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.iv_back || i == R.id.tv_back) {
-            finish();
-            overridePendingTransition(R.anim.out_to_right, R.anim.in_from_left);
-
-        } else if (i == R.id.tv_modify) {
-        }
-
-    }
 
     public class MyItem {
         public String data;
@@ -156,21 +142,30 @@ public class LocalPictureAndVideoActivity extends BaseActivity implements OnItem
     private void initView() {
 
 
-        mIvBack = findViewById(R.id.iv_back);
-        mTvBack = findViewById(R.id.tv_back);
-        mIdTitle = findViewById(R.id.id_title);
-        mTvModify = findViewById(R.id.tv_modify);
-        mIvAdd = findViewById(R.id.iv_add);
         mIdPictureListview = findViewById(R.id.id_picture_listview);
-
-        mIvBack.setOnClickListener(this);
-        mTvBack.setOnClickListener(this);
-        mTvModify.setOnClickListener(this);
-
-        mIvAdd.setVisibility(View.GONE);
-        mTvModify.setVisibility(View.GONE);
-        mIdTitle.setText("本地视频");
         mIdPictureListview.setOnItemClickListener(this);
+
+
+        mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
+
+        mLmiotTitleBar.setTitle("本地视频");
+
+        mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
+            @Override
+            public void onBackClick(View view) {
+                finish();
+            }
+
+            @Override
+            public void onMenuClick(View view) {
+
+            }
+
+            @Override
+            public void onTitleClick(View view) {
+
+            }
+        });
 
     }
 
