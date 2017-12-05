@@ -41,7 +41,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.zhy:percent-support-extends:1.1.1'
-    compile 'com.github.alijiahua:LoadDialog:1.7'
+    compile 'com.github.lmiot:LoadDialog:V1.9'
     compile 'com.github.lmiot:LmiotZxingSDK:1.0'
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'com.github.lmiot:TitleBarSDK:1.5'
