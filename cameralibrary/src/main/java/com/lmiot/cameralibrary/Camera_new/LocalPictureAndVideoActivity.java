@@ -77,7 +77,7 @@ public class LocalPictureAndVideoActivity extends BaseActivity implements OnItem
         mIdPictureListview.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         if (items.isEmpty()) {
-            ToastUtil.ToastMessage(LocalPictureAndVideoActivity.this, "本地录像为空！");
+            ToastUtil.ToastMessage(LocalPictureAndVideoActivity.this, getString(R.string.video_empty));
             finish();
         }
         super.onResume();
@@ -148,7 +148,7 @@ public class LocalPictureAndVideoActivity extends BaseActivity implements OnItem
 
         mLmiotTitleBar = findViewById(R.id.id_lmiot_title_bar);
 
-        mLmiotTitleBar.setTitle("本地视频");
+        mLmiotTitleBar.setTitle(getString(R.string.local_video));
 
         mLmiotTitleBar.setOnItemClickListener(new LmiotTitleBar.onItemClickListener() {
             @Override

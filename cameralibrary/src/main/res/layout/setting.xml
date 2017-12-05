@@ -12,7 +12,7 @@
 		android:id="@+id/id_lmiot_title_bar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:tv_title="设置"
+		app:tv_title="@string/setting"
 		app:show_iv_menu="false"
 		app:show_tv_menu="false"
 		app:iv_back="@drawable/title_back"
@@ -42,7 +42,7 @@
 				android:layout_weight="5"
 		        android:layout_height="match_parent"
 		        android:textSize="15sp"
-		        android:text="WIFI设置"
+		        android:text="@string/wifi_setting"
 		        android:textColor="@color/color_black" 
 		        android:gravity="center_vertical"/>
 
@@ -71,7 +71,7 @@
 				android:layout_weight="5"
 		        android:layout_height="match_parent"
 		        android:textSize="15sp"
-		        android:text="修改密码"
+		        android:text="@string/change_ps"
 		        android:textColor="@color/color_black"
 		        android:gravity="center_vertical"/>
 
@@ -102,7 +102,7 @@
 				android:layout_weight="5"
 		        android:layout_height="match_parent"
 		        android:textSize="15sp"
-		        android:text="SD卡设置"
+		        android:text="@string/sd_setting"
 		        android:textColor="@color/color_black"
 		        android:gravity="center_vertical"/>
 
@@ -132,7 +132,7 @@
 				android:layout_weight="5"
 		        android:layout_height="match_parent"
 		        android:textSize="15sp"
-		        android:text="远程录像"
+		        android:text="@string/remote_video_1"
 		        android:textColor="@color/color_black"
 		        android:gravity="center_vertical"/>
 
@@ -162,7 +162,7 @@
 				android:layout_weight="5"
 		        android:layout_height="match_parent"
 		        android:textSize="15sp"
-		        android:text="固件升级"
+		        android:text="@string/firmware_update"
 		        android:textColor="@color/color_black"
 		        android:gravity="center_vertical"/>
 

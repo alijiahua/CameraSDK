@@ -10,10 +10,10 @@
         android:id="@+id/id_lmiot_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tv_title="设备管理"
+        app:tv_title="@string/change_ps_1"
         app:show_iv_menu="false"
         app:show_tv_menu="true"
-        app:tv_menu="保存"
+        app:tv_menu="@string/complete"
         app:iv_back="@drawable/title_back"
         app:titlebar_bg="@color/colorAccent"
         app:text_color_title="@color/white"
@@ -36,7 +36,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:textSize="15sp"
-                android:text="管理员：" />
+                android:text="@string/admin" />
               <EditText
                 android:id="@+id/edit_name"
                 android:layout_height="match_parent"
@@ -69,7 +69,7 @@
                 android:gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:textSize="15sp"
-                android:text="密    码：" />
+                android:text="@string/ps" />
               <EditText
                 android:id="@+id/edit_pwd"
                 android:layout_height="match_parent"

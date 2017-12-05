@@ -10,7 +10,7 @@
         android:id="@+id/id_lmiot_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tv_title="添加摄像头"
+        app:tv_title="@string/add_camera"
         app:show_iv_menu="false"
         app:show_tv_menu="false"
         app:iv_back="@drawable/title_back"
@@ -36,7 +36,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:text="设备编号:"
+                android:text="@string/dev_code"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:textSize="15sp"
-                android:hint="请输入设备编号"
+                android:hint="@string/input_dev_code"
                 android:paddingLeft="10dp"
                 />
 
@@ -68,7 +68,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:text="用户名称:"
+                android:text="@string/uesrname_1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -99,7 +99,7 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:text="设备密码:"
+                android:text="@string/dev_ps"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -168,7 +168,7 @@
 
         <TextView
             android:id="@+id/id_restar_search"
-            android:text="重新扫描"
+            android:text="@string/rescan"
             android:textSize="15sp"
             android:textColor="@color/colorAccent"
             android:layout_centerHorizontal="true"

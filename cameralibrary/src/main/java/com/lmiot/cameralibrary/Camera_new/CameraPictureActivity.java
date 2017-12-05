@@ -144,7 +144,7 @@ public class CameraPictureActivity extends BaseActivity  {
             cal.setTimeInMillis(time);
             final String picTimer = formatter.format(cal.getTime()); //最后修改时间
 
-            timer.setText("保存时间：" + picTimer);
+            timer.setText(getString(R.string.save_time) + picTimer);
 
             final String absolutePath = mList.get(position).getAbsolutePath();
             final Bitmap bitmap = BitmapFactory.decodeFile(absolutePath);

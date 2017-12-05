@@ -22,7 +22,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:text="布防"
+                    android:text="@string/security_on"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/text_title_size" />
 
@@ -33,7 +33,7 @@
                     android:layout_gravity="right"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:text="撤防"
+                    android:text="@string/security_off"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/text_title_size" />
                 
@@ -44,7 +44,7 @@
                     android:layout_gravity="right"
                     android:gravity="center"
                     android:paddingLeft="15dp"
-                    android:text="获取传感器"
+                    android:text="@string/more_sensor"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/text_title_size" />
             </LinearLayout>

@@ -47,7 +47,7 @@
             android:shadowDx="1.0"
             android:shadowDy="1.0"
             android:shadowRadius="1.0"
-            android:text="编辑传感器"
+            android:text="@string/edit_sensor"
             android:textColor="@color/color_white"
             android:textSize="18.0sp"
             android:textStyle="bold" />
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:text="传感器ID"
+                    android:text="@string/sensor_id"
                     android:textColor="@color/color_black" />
 
                 <TextView
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:text="传感器类型"
+                    android:text="@string/sensor_type"
                     android:textColor="@color/color_black" />
 
                 <TextView
@@ -163,7 +163,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:paddingLeft="10dp"
-                    android:text="传感器名称"
+                    android:text="@string/scene_name"
                     android:textColor="@color/color_white" />
 
                 <EditText
@@ -206,7 +206,7 @@
             android:layout_height="50dp"
             android:background="@drawable/more_activity_logout_button_background"
             android:gravity="center"
-            android:text="删除传感器"
+            android:text="@string/del_sensor"
             android:textColor="@color/color_white"
             android:textSize="18sp" />
     </LinearLayout>

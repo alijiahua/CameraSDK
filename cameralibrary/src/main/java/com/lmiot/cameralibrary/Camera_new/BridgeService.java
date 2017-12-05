@@ -51,7 +51,7 @@ public class BridgeService extends Service
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		notifyManager.cancel(R.drawable.app);
+		notifyManager.cancel(R.drawable.camera_alarm_app);
 	}
 
 	/**
@@ -75,10 +75,6 @@ public class BridgeService extends Service
 	public void VideoData(String did, byte[] videobuf, int h264Data, int len,
 						  int width, int height, int timestamp, short milistamp, int sessid,
 						  int version, int originFrameLen) {
-		Log.d(TAG, "BridgeService----Call VideoData 视频数据返回...h264Data: "
-				+ h264Data + " len: " + len + " videobuf len: " + len
-				+ "width: " + width + "height: " + height + ",did:" + did
-				+ ",sessid:" + sessid + ",version:" + version);
 
 		if (playInterface != null) {
 			playInterface.callBackVideoData(videobuf, h264Data, len, width,height);
@@ -87,9 +83,6 @@ public class BridgeService extends Service
 
 	public void CallBack_H264Data(String did, byte[] h264, int type, int size,
 								  int timestamp, short milistamp, int sessid, int version) {
-		Log.w(TAG, "H264 数据返回:" + did + "," + h264.length + ",type:" + type
-				+ ",size:" + size + ",time:" + timestamp + ",did:" + did
-				+ ",sessid:" + sessid + ",version:" + version);
 		if (playInterface != null) {
 			playInterface.callBackH264Data(h264, type, size);
 		}
@@ -166,7 +159,6 @@ public class BridgeService extends Service
 
 	public void SearchResult(String sysVer, String appVer, String strMac,
 							 String strName, String strDeviceID, String strIpAddr, int port) {
-		Log.d("BridgeService", "新设备888："+strDeviceID);
 
 		if (strDeviceID.length() == 0) {
 			return;
@@ -654,7 +646,7 @@ public class BridgeService extends Service
 				break;
 			case ContentCommon.ALARM_DOORBELL:
 				//此处编写按下门铃需要执行的动作
-				getNotification("门铃来了", did, false);
+				getNotification(getString(R.string.notic_come), did, false);
 				break;
 			case ContentCommon.HIGHTEMP_ALARM://高温报警
 			case ContentCommon.LOWTEMP_ALARM://低温报警
@@ -721,12 +713,6 @@ public class BridgeService extends Service
 					record_schedule_sat_0, record_schedule_sat_1,
 					record_schedule_sat_2, record_sd_status, sdtotal, sdfree,enable_audio);
 		}
-		Log.e(TAG, "录像计划:record_schedule_sun_0=" + record_schedule_sun_0
-				+ ",record_schedule_sun_1=" + record_schedule_sun_1
-				+ ",record_schedule_sun_2=" + record_schedule_sun_2
-				+ ",record_schedule_mon_0=" + record_schedule_mon_0
-				+ ",record_schedule_mon_1=" + record_schedule_mon_1
-				+ ",record_schedule_mon_2=" + record_schedule_mon_2);
 	}
 
 //	public void setUpdateFirmware(FirmwareUpdateActiviy  activity,String did)
@@ -757,9 +743,9 @@ public class BridgeService extends Service
 				//设置小图标
 				.setAutoCancel(true)
 				.setDefaults(Notification.DEFAULT_SOUND)
-				.setSmallIcon(R.drawable.app)
+				.setSmallIcon(R.drawable.camera_alarm_app)
 				//设置通知标题
-				.setContentTitle("摄像头报警")
+				.setContentTitle(getString(R.string.camera_alarm))
 				.setContentTitle(content);
 				//设置通知内容
 		//设置通知时间，默认为系统发出通知的时间，通常不用设置

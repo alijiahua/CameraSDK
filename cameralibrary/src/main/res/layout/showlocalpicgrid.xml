@@ -11,7 +11,7 @@
         android:id="@+id/id_lmiot_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tv_title="视频列表"
+        app:tv_title="@string/video_list"
         app:show_iv_menu="false"
         app:show_tv_menu="false"
         app:iv_back="@drawable/title_back"
@@ -75,7 +75,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/add_btn_selector"
-            android:text="删除该视频"
+            android:text="@string/del_this_video"
             android:textColor="@color/colorAccent" >
         </Button>
     </LinearLayout>

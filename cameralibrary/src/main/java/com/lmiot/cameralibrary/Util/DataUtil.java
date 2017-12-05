@@ -8,7 +8,7 @@ package com.lmiot.cameralibrary.Util;
 public class DataUtil {
 
 
-    private  static String userName01;
+    private  static String userName01="123456";
 
     public static void setUerName(String userName) {
         userName01=userName;

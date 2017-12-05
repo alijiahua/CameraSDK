@@ -77,7 +77,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="对码状态中..."
+                        android:text="@string/coding"
                         android:textColor="@color/color_white"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -90,7 +90,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/cancel_code"
-                    android:text="退出对码"
+                    android:text="@string/exit_code"
                     android:textColor="@color/color_white"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -143,7 +143,7 @@
                         android:cursorVisible="true"
                         android:singleLine="true"
                         android:textCursorDrawable="@null"
-                        android:text="我的设备"
+                        android:text="@string/my_device"
                         android:textScaleX="1.2" />
 
                     <TextView
@@ -154,7 +154,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_toLeftOf="@id/imageview_new"
                         android:layout_toRightOf="@id/code_imageview_type"
-                        android:text="请为您的设备取一个名字吧"/>
+                        android:text="@string/get_name"/>
                 </RelativeLayout>
             </LinearLayout>
 
@@ -173,7 +173,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/add_sensor_ok"
-                    android:text="添加完成"
+                    android:text="@string/complete"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>

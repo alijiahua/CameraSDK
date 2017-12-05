@@ -7,7 +7,7 @@
         android:id="@+id/btn_load"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="获取更多"
+        android:text="@string/get_more"
        />
 
 </LinearLayout>

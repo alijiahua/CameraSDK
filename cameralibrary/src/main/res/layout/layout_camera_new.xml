@@ -11,7 +11,7 @@
         android:id="@+id/id_lmiot_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tv_title="云摄像头"
+        app:tv_title="@string/yun_camera"
         app:show_iv_menu="true"
         app:show_tv_menu="false"
         app:iv_back="@drawable/title_back"
@@ -31,7 +31,7 @@
 
         >
         <TextView
-            android:text="当前没有摄像头，您可以"
+            android:text="@string/no_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -43,7 +43,7 @@
             android:id="@+id/id_add_bt"
             android:layout_width="160dp"
             android:layout_height="40dp"
-            android:text="添加摄像头"
+            android:text="@string/add_camera_1"
             android:textColor="#fff"
             android:textSize="15sp"
             android:layout_gravity="center_horizontal"

@@ -7,14 +7,12 @@
 
     <TextView
         android:id="@+id/searchDevName"
-        android:text="名称"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="#90000000" />
 
     <TextView
         android:id="@+id/searchDevID"
-        android:text="ID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

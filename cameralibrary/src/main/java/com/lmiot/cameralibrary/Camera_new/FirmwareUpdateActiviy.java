@@ -66,8 +66,8 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
             switch (msg.what) {
                 case 1:
                     isGetSysData = true;
-                    mSysver.setText("当前版本：" + LocalSysver);
-                    DialogUtils.ShowDialog(FirmwareUpdateActiviy.this, "正在获取服务器版本，请稍后…");
+                    mSysver.setText(getString(R.string.now_version) +"："+ LocalSysver);
+                    DialogUtils.ShowDialog(FirmwareUpdateActiviy.this, getString(R.string.getting_version));
                     getFirmware();
                     break;
             }
@@ -93,7 +93,7 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
             DialogUtils.HiddenDialog();
             mVer = (String) msg.obj;
             Log.e("info", "sys:" + mVer);
-            mServiceSysverText.setText("最新版本：" + mVer);
+            mServiceSysverText.setText(getString(R.string.new_version) + "："+mVer);
 
             if (mVer.equals(LocalSysver)) {
                 mUpdate.setVisibility(View.GONE);
@@ -117,23 +117,23 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
                     Log.i("info", "did:" + did + "download_server:"
                             + download_server + "filePath_sys:" + filePath_sys);
                     new AlertDialog.Builder(FirmwareUpdateActiviy.this)
-                            .setTitle("检测到新系统固件，是否更新?")
+                            .setTitle(R.string.check_has_update)
                             .setCancelable(false)
-                            .setNegativeButton("暂不更新", new DialogInterface.OnClickListener() {
+                            .setNegativeButton(R.string.no_update_now, new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // TODO Auto-generated method stub
 
                                 }
-                            }).setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                            }).setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // TODO Auto-generated method stub
                             sys_isnew = false;
                             NativeCaller.UpgradeFirmware(did, download_server, filePath_sys, 0);
-                            Toast.makeText(getApplicationContext(), "正在更新系统固件，稍后摄像机会重启...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), R.string.restarting, Toast.LENGTH_LONG).show();
                         }
                     }).show();
 
@@ -204,7 +204,7 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
     private void showDiglog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("正在获取版本信息...");
+        progressDialog.setMessage(getString(R.string.getting_versioning));
         progressDialog.show();
     }
 
@@ -229,11 +229,11 @@ public class FirmwareUpdateActiviy extends BaseActivity implements Firmware ,Vie
             if (i == R.id.update) {
             if (download_server != null && filePath_sys != null) {
                 if (download_server.length() == 0 || filePath_sys.length() == 0) {
-                    ToastUtil.ToastMessage(this, "信息不完整，无法升级");
+                    ToastUtil.ToastMessage(this, getString(R.string.cannot_update));
                     return;
                 }
                 if (LocalSysver.equals(serverVer)) {
-                    ToastUtil.ToastMessage(this, "版本信息一样，无需升级");
+                    ToastUtil.ToastMessage(this, getString(R.string.no_need_update));
                     return;
                 }
                 updateHandler.sendEmptyMessage(1);

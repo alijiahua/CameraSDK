@@ -94,7 +94,6 @@ public class SensorStartCodeActivity extends BaseActivity implements OnClickList
 		// TODO Auto-generated method stub
 		int i = v.getId();
 		if (i == R.id.cancel_code) {
-			System.out.println("对码完成，退出对码、、、");
 			closeTimer(0);
 
 		} else if (i == R.id.add_sensor_ok) {

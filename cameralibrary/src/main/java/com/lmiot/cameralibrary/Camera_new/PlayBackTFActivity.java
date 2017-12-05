@@ -274,13 +274,13 @@ public class PlayBackTFActivity extends BaseActivity implements
             NativeCaller.PPPPGetSDCardRecordFileList(strDID,
                     getCurrentPageIndex, 500);
             mAdapter.notifyDataSetChanged();
-            loadMoreButton.setText("获取更多视频文件...");
+            loadMoreButton.setText(R.string.more_video);
         } else {
             int filecount = fileTFCount - count;
             NativeCaller.PPPPGetSDCardRecordFileList(strDID,
                     getCurrentPageIndex++, filecount);
             mAdapter.notifyDataSetChanged();
-            loadMoreButton.setText("已经加载完毕");
+            loadMoreButton.setText(R.string.load_complete);
             loadMoreButton.setVisibility(View.GONE);
         }
     }

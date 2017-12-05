@@ -10,7 +10,7 @@
         android:id="@+id/id_lmiot_title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tv_title="远程录像"
+        app:tv_title="@string/remote_video"
         app:show_iv_menu="false"
         app:show_tv_menu="false"
         app:iv_back="@drawable/title_back"

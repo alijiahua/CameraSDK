@@ -1,6 +1,5 @@
 package com.lmiot.cameralibrary.Camera_new;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -28,8 +27,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -208,8 +205,8 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.app);
-        builder.setTitle("退出摄像头界面");
+        builder.setIcon(R.drawable.camera_alarm_app);
+        builder.setTitle(R.string.exit_camera);
         builder.setMessage(R.string.exit_alert);
         builder.setPositiveButton(R.string.str_ok,
                 new DialogInterface.OnClickListener() {
@@ -480,7 +477,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     private Handler msgHandler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
-                Log.d("tag", "断线了");
                 Toast.makeText(getApplicationContext(),
                         R.string.pppp_status_disconnect, Toast.LENGTH_SHORT)
                         .show();
@@ -707,7 +703,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                     startActivity(mIntent);
                     overridePendingTransition(R.anim.move_left_out_activity, R.anim.move_right_in_activity);
                 } else {
-                    ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+                    ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
                 }
 
 
@@ -946,8 +942,8 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
         bt01.setVisibility(View.GONE);
         line1.setVisibility(View.GONE);
 
-        bt02.setText("查看本地录像");
-        bt03.setText("查看远程录像");
+        bt02.setText(R.string.look_local_video);
+        bt03.setText(R.string.look_remote_video);
 
 
         bt02.setOnClickListener(new OnClickListener() {
@@ -984,7 +980,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                     startActivity(mIntent);
                     overridePendingTransition(R.anim.move_left_out_activity, R.anim.move_right_in_activity);
                 } else {
-                    ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+                   ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
                 }
 
 
@@ -1009,7 +1005,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 goAudio();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1017,7 +1013,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 goMicroPhone();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1045,7 +1041,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                 NativeCaller.PPPPCameraControl(SystemValue.deviceId, 5, value1);
                 m_bLeftRightMirror = !m_bLeftRightMirror;
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1070,7 +1066,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                 NativeCaller.PPPPCameraControl(SystemValue.deviceId, 5, value);
                 m_bUpDownMirror = !m_bUpDownMirror;
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1078,7 +1074,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 goTakeVideo();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1091,7 +1087,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
                     showToast(R.string.ptz_takepic_save_fail);
                 }
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1101,7 +1097,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
 
 
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1109,7 +1105,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 setBrightOrContrast(BRIGHT);
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1117,7 +1113,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 setBrightOrContrast(CONTRAST);
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1135,7 +1131,7 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 defaultVideoParams();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1143,14 +1139,14 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 if (mIrSwitch.isChecked()) {
                     NativeCaller.PPPPCameraControl(SystemValue.deviceId, IR_STATE, 1);
-                    Toast.makeText(this, "IR开", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.ir_on, Toast.LENGTH_SHORT).show();
 
                 } else {
                     NativeCaller.PPPPCameraControl(SystemValue.deviceId, IR_STATE, 0);
-                    Toast.makeText(this, "IR关", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.ir_off, Toast.LENGTH_SHORT).show();
                 }
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
 
@@ -1158,28 +1154,28 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             if (mTag == 1) {
                 new ControlDeviceTask(ContentCommon.CMD_PTZ_UP).execute();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
         } else if (i1 == R.id.id_down) {
             if (mTag == 1) {
                 new ControlDeviceTask(ContentCommon.CMD_PTZ_DOWN).execute();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
         } else if (i1 == R.id.id_left) {
             if (mTag == 1) {
                 new ControlDeviceTask(ContentCommon.CMD_PTZ_LEFT).execute();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
         } else if (i1 == R.id.id_right) {
             if (mTag == 1) {
                 new ControlDeviceTask(ContentCommon.CMD_PTZ_RIGHT).execute();
             } else {
-                ToastUtil.ToastMessage(PlayActivity.this, "请连接成功后再进行操作！");
+               ToastUtil.ToastMessage(PlayActivity.this, getString(R.string.no_connected));
             }
 
         }
@@ -1386,7 +1382,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
         if (isTakeVideo) {
             mIdVideoing.setVisibility(View.GONE);
             showToast(R.string.ptz_takevideo_end);
-            Log.d("tag", "停止录像");
             if (!isJpeg) {
                 NativeCaller.RecordLocal(SystemValue.deviceId, 0);
             }
@@ -1398,7 +1393,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
             isTakeVideo = true;
             mIdVideoing.setVisibility(View.VISIBLE);
             showToast(R.string.ptz_takevideo_begin);
-            Log.d("tag", "开始录像");
             videotime = (new Date()).getTime();
             mPtzTakeVideos.setImageResource(R.drawable.ptz_takevideo_pressed);
             if (!isJpeg) {
@@ -1416,7 +1410,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     private void stopTakevideo() {
         if (isTakeVideo) {
             showToast(R.string.ptz_takevideo_end);
-            Log.d("tag", "停止录像");
             isTakeVideo = false;
             // cameratakevideo.stopRecordVideo(SystemValue.deviceId);
             myvideoRecorder.stopRecordVideo();
@@ -1505,13 +1498,11 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
     private void goMicroPhone() {
         if (!isTalking) {
             if (bAudioRecordStart) {
-                Log.d("tag", "停止说话");
                 isMcriophone = false;
                 bAudioRecordStart = false;
                 mPtzTalk.setChecked(false);
                 StopTalk();
             } else {
-                Log.d("info", "开始说话");
                 isMcriophone = true;
                 bAudioRecordStart = true;
                 mPtzTalk.setChecked(true);
@@ -1651,7 +1642,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
      **/
     @Override
     public void callBackCameraParamNotify(String did, int resolution, int brightness, int contrast, int hue, int saturation, int flip, int mode) {
-        Log.e("设备返回的参数", resolution + "," + brightness + "," + contrast + "," + hue + "," + saturation + "," + flip + "," + mode);
         nBrightness = brightness;
         nContrast = contrast;
         nResolution = resolution;
@@ -1665,7 +1655,6 @@ public class PlayActivity extends BaseActivity implements BridgeService.IpcamCli
      **/
     @Override
     public void callBackVideoData(byte[] videobuf, int h264Data, int len, int width, int height) {
-        Log.d("底层返回数据", "videobuf:" + videobuf + "--" + "h264Data" + h264Data + "len" + len + "width" + width + "height" + height);
         if (!bDisplayFinished)
             return;
         bDisplayFinished = false;

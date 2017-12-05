@@ -346,9 +346,6 @@ SensorListActivityAllDataInterface,OnItemClickListener{
 			String name = data.getStringExtra("sensorname");
 			int channel = data.getIntExtra("id", -1);
 
-			Log.i("tag", "对码界面返回" + sensorid1 + "," + sensorid2 + ","
-					+ sensorid3 + ",sensortype" + sensortype + ",sensorname"
-					+ name);
 
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("presetid", linkpreset);
@@ -376,7 +373,7 @@ SensorListActivityAllDataInterface,OnItemClickListener{
 			setSensorName(name, channel);
 			
 			if (sensortype != 1) {
-				Log.i("info", "不是门磁 无需处理");
+				//Log.i("info", "不是门磁 无需处理");
 				return;
 			}
 //			
@@ -454,7 +451,6 @@ SensorListActivityAllDataInterface,OnItemClickListener{
 			timerTask = null;
 		}
 
-		System.out.println("对码完成，退出对码、、、");
 		NativeCaller.TransferMessage(strDid,
 				"set_sensorstatus.cgi?cmd=3&loginuse=admin&loginpas=" + pwd
 						+ "&user=admin&pwd=" + pwd, 1);

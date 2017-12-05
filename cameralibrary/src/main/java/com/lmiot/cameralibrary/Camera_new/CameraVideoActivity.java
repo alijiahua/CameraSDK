@@ -151,7 +151,7 @@ public class CameraVideoActivity extends BaseActivity  {
             cal.setTimeInMillis(time);
             final String picTimer = formatter.format(cal.getTime()); //最后修改时间
 
-            timer.setText("保存时间：" + picTimer);
+            timer.setText(getString(R.string.save_time)+ picTimer);
 
             final String absolutePath = mList.get(position).getAbsolutePath();
             final Bitmap bitmap = createVideoThumbnail(absolutePath);
@@ -165,9 +165,9 @@ public class CameraVideoActivity extends BaseActivity  {
                 @Override
                 public void onClick(View v) {
                     new AlertDialog.Builder(CameraVideoActivity.this)
-                            .setMessage("是否删除该视频？")
-                            .setNegativeButton("取消", null)
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            .setMessage(R.string.sure_del_video)
+                            .setNegativeButton(R.string.cancel, null)
+                            .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     mList.get(position).delete();

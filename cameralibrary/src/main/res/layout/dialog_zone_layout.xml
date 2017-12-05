@@ -11,7 +11,7 @@
         android:layout_height="40dp"
         android:textColor="@color/text_color"
         android:layout_gravity="center"
-        android:text="标题"
+        android:text="@string/title"
         android:textSize="15sp"
         android:gravity="center|top"
         android:layout_marginTop="10dp"
@@ -40,7 +40,7 @@
         android:layout_height="35dp"
         android:textColor="@color/white"
         android:layout_gravity="center"
-        android:text="确定"
+        android:text="@string/sure"
         android:textSize="15sp"
         android:background="@drawable/location_btn_selector"
         android:layout_below="@+id/id_edit"
@@ -56,13 +56,12 @@
         android:layout_gravity="center"
         android:clickable="true"
         android:textSize="15sp"
-        android:background="@drawable/selector_dialog_img_del"
+        android:background="@drawable/scene_del"
         android:paddingLeft="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:visibility="gone"
         />
-
 
 </RelativeLayout>

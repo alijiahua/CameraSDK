@@ -1,260 +1,229 @@
 <resources>
 
-    <!--通用-->
-    <string name="app_name">Cameralibrary</string>
-    <string name="back">返回</string>
-
-    <!--设置-->
-    <string name="plz_input_cur_wifi_pw">请输入当前WiFi的密码</string>
-    <string name="search_device">搜索设备</string>
-    <string name="use_other_wifi">使用其他WiFi</string>
-
-
-    <!--传感器相关-->
-
-
-    <!--蓝牙类设备和摄像头-->
-
-
-    <!--红外设备类-->
-
-
-    <!--设置-->
-
-    <string name="complete">完成</string>
-
-    <!--情景，联动和任务-->
-    <string name="name">名称</string>
-    <string name="online">●获取状态中…</string>
-    <string name="down">下降</string>
-    <string name="up">上升</string>
-    <!--***********************************************************************************************************-->
-    <!--***********************************************************************************************************-->
-    <!--***********************************************************************************************************-->
-
-
-    <!-- 应有程序 -->
-    <string name="str_ok">确定</string>
-    <string name="str_cancel">取消</string>
-    <string name="exit_alert">确认退出吗 ?</string>
-    <string name="password">密码:</string>
-    <string name="showpwd">显示密码</string>
-    <string name="connected">已连接</string>
-    <string name="pwd_no_empty">密码不能为空</string>
-
-    <string name="sensorlist_addnewdevice">添加新设备</string>
-    <string name="sensor_list_sensor">传感器</string>
-    <string name="sensorlist_havedevice">您已添加的设备</string>
-    <string name="add_sensor_infrerad_desc">红外是利用红外辐射的热效应,检测是否有人或者动物经过。</string>
-    <string name="add_sensor_gas_desc">气感是通过气体传感器探测周围环境中可燃气体是否超过安全值。</string>
-    <string name="add_sensor_smoke_desc">烟感是通过监测烟雾的浓度来实现火灾防范。</string>
-    <string name="add_sensor_control_desc">无线遥控就是一种用来远程控制机器的装置。</string>
-    <string name="add_sensor_siren_desc">警笛可以接收遥控器，无线门磁、无线红外等传感器的报警信号</string>
-    <string name="add_sensor_door_desc">门磁是用来探测门、窗、抽屉等是否被非法打开或者移动。</string>
-    <string name="sensor_type_door">门磁</string>
-    <string name="sensor_type_infrared">红外</string>
-    <string name="sensor_type_smoke">烟感</string>
-    <string name="sensor_type_siren">警笛</string>
-    <string name="sensor_type_gas">气感</string>
-    <string name="sensor_type_remote">遥控器</string>
-    <string name="sensor_type_camera">摄像头</string>
-    <string name="sensor_type_curtain">幕帘</string>
-
-    <!-- 欢迎界面 -->
-
-    <!-- 主界面 -->
-    <string name="pppp_status_initialing">已连接, 正在初始化</string>
-    <string name="connecting">正在连接...</string>
-    <string name="device_type_name">类型:</string>
-    <string name="pppp_status_unknown">未知状态</string>
-    <string name="pppp_status_connecting">正在连接</string>
-    <string name="pppp_status_online">在线</string>
-    <string name="pppp_status_disconnect">断线</string>
-    <string name="pppp_status_connect_failed">连接失败</string>
-    <string name="pppp_status_pwd_error">密码错误</string>
-    <string name="pppp_status_invalid_id">ID号无效</string>
-    <string name="device_not_on_line">摄像机不在线</string>
-    <string name="pppp_status_connect_timeout">连接超时</string>
-    <string name="done">完成</string>
-    <string name="main_select_all">全选</string>
-    <string name="main_select_reverse">反选</string>
-    <string name="main_show_back">再按一次，退出视频！</string>
-    <!-- 视频参数设置界面 -->
-    <string name="right">向右</string>
-    <string name="left">向左</string>
-
-    <!-- 添加相机/修改相机 界面 -->
-
-    <!-- 搜索相机界面 -->
-    <string name="searching_tip">正在搜索，请稍候...</string>
-
-    <!-- 设置界面 -->
-    <string name="alerm_setting">报警设置</string>
-    <!-- 摄像机  SDCard 设置 -->
-    <string name="sdcard_getparams">正在获取SDCard信息...</string>
-    <string name="sdcard_total">SD卡总容量(M):</string>
-    <string name="sdcard_remain">SD卡剩余量(M):</string>
-    <string name="sdcard_state">SD卡状态:</string>
-    <string name="sdcard_format">格式化</string>
-    <string name="sdcard_inserted">SD卡已经插入</string>
-    <string name="sdcard_video">录像中...</string>
-    <string name="sdcard_file_error">文件系统错误</string>
-    <string name="sdcard_isformatting">SD卡正在格式化中...</string>
-    <string name="sdcard_status_info">没有插卡或者需要格式化</string>
-    <string name="sdcard_coverage">录像覆盖:</string>
-    <string name="sdcard_recordlength">录像时长(分钟):</string>
-    <string name="sdcard_recordtime">定时录像:</string>
-    <string name="sdcard_range">范围5-180</string>
-    <string name="sdcard_set_failed">SD卡设置失败</string>
-    <string name="sdcard_set_success">SD卡设置成功</string>
-    <string name="sdcard_formatsd">格式化SD卡需要30秒钟,是否格式化?</string>
-
-    <!-- Wifi 设置 -->
-    <string name="wifi_manager">管理WiFi网络</string>
-    <string name="wifi_signal_strong">信号强度:</string>
-    <string name="wifi_safe">安全性:</string>
-    <string name="wifi_no_safe">无</string>
-    <string name="wifi_set_failed">WiFi设置失败</string>
-    <string name="wifi_set_success">WiFi设置成功,摄像机正在重启...</string>
-    <string name="wifi_not_connected">未连接</string>
-    <string name="wifi_scanning">WiFi正在扫描,请稍候...</string>
-    <string name="wifi_scan_failed">WiFi扫描失败</string>
-    <string name="wifi_getparams">正在获取WiFi信息...</string>
-    <string name="wifi_notchange">WiFi没有更改,不需要设置</string>
-    <!-- User 设置 -->
-    <string name="user_set_failed">用户设置失败</string>
-    <string name="user_set_success">用户设置成功,摄像机正在重启</string>
-    <string name="user_getparams">正在获取用户信息...</string>
-
-    <!-- Alerm 设置 -->
-    <string name="alerm_detector_layout">移动侦测布防</string>
-    <string name="alerm_detector_sensitivity">移动侦测灵敏度</string>
-    <string name="alerm_io_layout">报警输入布防</string>
-    <string name="alerm_trigger_level">触发电平</string>
-    <string name="alerm_presetsit">报警时预置位联动</string>
-    <string name="alerm_audio_level">声音侦测布防</string>
-    <string name="alerm_audio_sensitivity">灵敏度</string>
-    <string name="alerm_io_move">报警后 IO 联动</string>
-    <string name="alerm_ioout_level">输出电平</string>
-    <string name="alerm_trigger_event">报警触发事件</string>
-    <string name="alerm_set_failed">报警设置失败</string>
-    <string name="setting_aler_sucess">报警设置成功</string>
-    <string name="alerm_audio_levelhigh">高灵敏度</string>
-    <string name="alerm_audio_levelmiddle">中灵敏度</string>
-    <string name="alerm_audio_levellow">低灵敏度</string>
-    <string name="alerm_ioin_levelhight">高电平</string>
-    <string name="alerm_audio_levelforbid">禁止检测</string>
-    <string name="alerm_ioin_levellow">低电平</string>
-    <string name="alerm_getparams">正在获取报警信息...</string>
-    <string name="alerm_preset_no">无</string>
-    <string name="alerm_motion_alarm">移动侦测报警</string>
-    <string name="alerm_gpio_alarm">IO联动报警</string>
-
-    <!-- 时间设置 -->
-
-    <!-- 邮件设置 -->
-
-    <!-- Ftp设置 -->
-
-    <!-- Ptz设置 -->
-    <!-- 查看本地图片界面 -->
-    <string name="takepicture_time">时间:</string>
-    <string name="picture_sum">张</string>
-
-    <string name="video_sum">个</string>
-    <string name="sum_pic">共: </string>
-
-    <!-- 查看远程图片界面 -->
-
-    <!-- 查看本地视频界面 -->
-    <string name="local_video_date">录像时间:</string>
-    <string name="local_video_badfile">文件已损坏</string>
-
-    <!-- 查看远程视频界面 -->
-    <string name="no_video">没有远程录像文件!</string>
-    <string name="remote_video_getparams">正在获取远程录像信息...</string>
-
-    <!-- 播放界面 -->
-    <string name="ptz_takepic_ok">拍照成功</string>
-    <string name="ptz_takepic_fail">拍照失败</string>
-    <string name="ptz_default_vedio_params">视频参数恢复默认值</string>
-    <string name="ptz_takepic_save_fail">该设备没有SDCard,照片保存失败</string>
-    <string name="ptz_takevideo_begin">开始录像</string>
-    <string name="ptz_takevideo_end">录像结束</string>
-
-    <!-- 新加登陆后界面 -->
-
-    <!-- TODO: Remove or change this placeholder text -->
-
-
-    <!-- 欢迎界面 -->
-
-    <!-- 主界面 -->
-    <string name="delete_camera">删除</string>
-    <!-- 视频参数设置界面 -->
-
-    <!-- 添加相机/修改相机 界面 -->
-
-    <!-- 搜索相机界面 -->
-
-    <!-- 设置界面 -->
-    <!-- 摄像机  SDCard 设置 -->
-
-    <!-- Wifi 设置 -->
-    <!-- User 设置 -->
-
-    <!-- Alerm 设置 -->
-
-    <!-- 时间设置 -->
-
-    <!-- 邮件设置 -->
-
-    <!-- Ftp设置 -->
-
-    <!-- Ptz设置 -->
-    <!-- 查看本地图片界面 -->
-
-    <!-- 查看远程图片界面 -->
-
-    <!-- 查看本地视频界面 -->
-
-    <!-- 查看远程视频界面 -->
-
-    <!-- 播放界面 -->
-
-    <!-- 新加登陆后界面 -->
-
-    <string name="plan_video">计划录像</string>
-    <string name="move_video">移动侦测录像</string>
-    <string name="plan_day_1">星期一</string>
-    <string name="plan_day_2">星期二</string>
-    <string name="plan_day_3">星期三</string>
-    <string name="plan_day_4">星期四</string>
-    <string name="plan_day_5">星期五</string>
-    <string name="plan_day_6">星期六</string>
-    <string name="plan_day_7">星期日</string>
-    <string name="camera_defense_addsave">保存</string>
-    <string name="camera_defense_starttime">开始时间</string>
-    <string name="camera_defense_endtime">结束时间</string>
-    <string name="add_valid_time">添加时段</string>
-    <string name="edit_valid_time">编辑时段</string>
-    <string name="defense_nodate">请选择星期</string>
-    <string name="del_ok">确认删除？</string>
-    <string name="plug_one">一</string>
-    <string name="plug_two">二</string>
-    <string name="plug_three">三</string>
-    <string name="plug_four">四</string>
-    <string name="plug_five">五</string>
-    <string name="plug_six">六</string>
-    <string name="plug_seven">日</string>
-
-
-    <!--  卫浴类-->
-
-    <!--情景，联动和任务-->
-
-
-    <!-- 时间，日期,单位和数字类-->
-
-
+<string name="app_name">Cameralibrary</string>
+<string name="back">Back</string>
+<string name="plz_input_cur_wifi_pw">Input Wifi Password</string>
+<string name="search_device">Searching</string>
+<string name="use_other_wifi">Other Wifi</string>
+<string name="complete">Complete</string>
+<string name="name">Name</string>
+<string name="online">●Getting Status…</string>
+<string name="down">Down</string>
+<string name="up">Up</string>
+<string name="str_ok">Sure</string>
+<string name="str_cancel">Cancel</string>
+<string name="exit_alert">Confirm Exit ?</string>
+<string name="password">Password:</string>
+<string name="showpwd">Display password</string>
+<string name="connected"> Connected </string>
+<string name="pwd_no_empty"> Password can not be empty </string>
+<string name="sensorlist_addnewdevice"> Add new device </string>
+<string name="sensor_list_sensor"> Sensor </string>
+<string name="sensorlist_havedevice"> Device you added </string>
+<string name="add_sensor_infrerad_desc"> Infrared is the use of thermal effects of infrared radiation, detect whether there are people or animals through. </string>
+<string name="add_sensor_gas_desc"> Air is detected by the gas sensor combustible gas in the surrounding environment is more than safety. </string>
+<string name="add_sensor_smoke_desc"> Smoke detection is achieved by monitoring the concentration of smoke. </string>
+<string name="add_sensor_control_desc"> Wireless remote control is a device used to remotely control the machine. </string>
+<string name="add_sensor_siren_desc"> Siren can receive remote control, wireless door sensor, wireless infrared sensor alarm signal </string>
+<string name="add_sensor_door_desc"> The magnet is used to detect whether the door, window, drawer, etc. are illegally opened or moved. </string>
+<string name="sensor_type_door"> Door magnet </string>
+<string name="sensor_type_infrared"> Infrared </string>
+<string name="sensor_type_smoke"> Smoke </string>
+<string name="sensor_type_siren"> Siren </string>
+<string name="sensor_type_gas"> Air feeling </string>
+<string name="sensor_type_remote"> Remote </string>
+<string name="sensor_type_camera"> Camera </string>
+<string name="sensor_type_curtain"> Curtain </string>
+<string name="pppp_status_initialing"> Connected, initializing </string>
+<string name="connecting"> Connecting ... </string>
+<string name="device_type_name"> Type: </string>
+<string name="pppp_status_unknown"> Unknown state </string>
+<string name="pppp_status_connecting"> Connecting </string>
+<string name="pppp_status_online"> Online </string>
+<string name="pppp_status_disconnect"> Disconnected </string>
+<string name="pppp_status_connect_failed"> Connection failed </string>
+<string name="pppp_status_pwd_error"> Password error </string>
+<string name="pppp_status_invalid_id"> Invalid ID number </string>
+<string name="device_not_on_line"> Camera is offline </string>
+<string name="pppp_status_connect_timeout"> Connection timeout </string>
+<string name="done"> Done </string>
+<string name="main_select_all"> Select all </string>
+<string name="main_select_reverse"> Negative </string>
+<string name="main_show_back"> Press again to exit the video! </string>
+<string name="right"> To the right </string>
+<string name="left"> Left </string>
+<string name="searching_tip"> Searching, please wait ... </string>
+<string name="alerm_setting"> Alarm Settings </string>
+<string name="sdcard_getparams"> Retrieving SDCard information ... </string>
+<string name="sdcard_total"> Total SD card capacity (M): </string>
+<string name="sdcard_remain"> SD card remaining amount (M): </string>
+<string name="sdcard_state"> SD card status: </string>
+<string name="sdcard_format"> Format </string>
+<string name="sdcard_inserted"> SD card inserted </string>
+<string name="sdcard_video"> Recording ... </string>
+<string name="sdcard_file_error"> File system error </string>
+<string name="sdcard_isformatting"> SD card is formatting ... </string>
+<string name="sdcard_status_info"> No card or formatting required </string>
+<string name="sdcard_coverage"> Video overrides: </string>
+<string name="sdcard_recordlength"> Recording duration (minutes): </string>
+<string name="sdcard_recordtime"> Timing recording: </string>
+<string name="sdcard_range"> Range 5-180 </string>
+<string name="sdcard_set_failed"> SD card setup failed </string>
+<string name="sdcard_set_success"> SD card set successfully </string>
+<string name="sdcard_formatsd"> It takes 30 seconds to format the SD card, is it formatted? </string>
+<string name="wifi_manager"> Manage WiFi Network </string>
+<string name="wifi_signal_strong"> Signal strength: </string>
+<string name="wifi_safe"> Security: </string>
+<string name="wifi_no_safe"> None </string>
+<string name="wifi_set_failed"> WiFi setup failed </string>
+<string name="wifi_set_success"> WiFi setup is successful, camera is rebooting ... </string>
+<string name="wifi_not_connected"> not connected </string>
+<string name="wifi_scanning"> WiFi is scanning, please wait ... </string>
+<string name="wifi_scan_failed"> WiFi scan failed </string>
+<string name="wifi_getparams"> Getting WiFi info ... </string>
+<string name="wifi_notchange"> WiFi has not changed, there is no need to set </string>
+<string name="user_set_failed"> User setting failed </string>
+<string name="user_set_success"> User set successfully, camera is restarting </string>
+<string name="user_getparams"> Retrieving user info ... </string>
+<string name="alerm_detector_layout"> Motion Detection Arming </string>
+<string name="alerm_detector_sensitivity"> Motion detection sensitivity </string>
+<string name="alerm_io_layout"> Alarm Input Arming </string>
+<string name="alerm_trigger_level">Trigger level </string>
+<string name="alerm_presetsit"> Preset alarm linkage </string>
+<string name="alerm_audio_level"> Sound Detection Arming </string>
+<string name="alerm_audio_sensitivity"> Sensitivity </string>
+<string name="alerm_io_move"> IO linkage after alarm </string>
+<string name="alerm_ioout_level"> Output level </string>
+<string name="alerm_trigger_event"> Alarm trigger event </string>
+<string name="alerm_set_failed"> Alarm setting failed </string>
+<string name="setting_aler_sucess"> Alarm set successfully </string>
+<string name="alerm_audio_levelhigh"> High sensitivity </string>
+<string name="alerm_audio_levelmiddle"> Sensitivity </string>
+<string name="alerm_audio_levellow"> Low sensitivity </string>
+<string name="alerm_ioin_levelhight"> High </string>
+<string name="alerm_audio_levelforbid"> Prohibit detection </string>
+<string name="alerm_ioin_levellow"> Low </string>
+<string name="alerm_getparams"> Getting alarm info ... </string>
+<string name="alerm_preset_no"> None </string>
+<string name="alerm_motion_alarm"> Motion detection alarm </string>
+<string name="alerm_gpio_alarm"> IO linkage alarm </string>
+<string name="takepicture_time"> Time: </string>
+<string name="picture_sum"> Zhang </string>
+<string name="video_sum"> </string>
+<string name="sum_pic"> Total: </string>
+<string name="local_video_date"> Recording time: </string>
+<string name="local_video_badfile"> The file is corrupt </string>
+<string name="no_video"> No remote recording files! </string>
+<string name="remote_video_getparams"> Getting remote recording info ... </string>
+<string name="ptz_takepic_ok"> Camera successful </string>
+<string name="ptz_takepic_fail"> Photo failed </string>
+<string name="ptz_default_vedio_params"> Default video parameter recovery </string>
+<string name="ptz_takepic_save_fail"> The device does not have an SDCard and the photo has failed to save </string>
+<string name="ptz_takevideo_begin"> Start recording </string>
+<string name="ptz_takevideo_end"> End of recording </string>
+<string name="delete_camera"> Delete </string>
+<string name="plan_video"> Schedule Recording </string>
+<string name="move_video"> Motion detection video </string>
+<string name="plan_day_1"> Monday </string>
+<string name="plan_day_2"> Tuesday </string>
+<string name="plan_day_3"> Wednesday </string>
+<string name="plan_day_4"> Thursday </string>
+<string name="plan_day_5"> Friday </string>
+<string name="plan_day_6"> Saturday </string>
+<string name="plan_day_7"> Sunday </string>
+<string name="camera_defense_addsave"> Save </string>
+<string name="camera_defense_starttime"> Start time </string>
+<string name="camera_defense_endtime"> End time </string>
+<string name="add_valid_time"> Add period </string>
+<string name="edit_valid_time"> Edit period </string>
+<string name="defense_nodate"> Please select week </string>
+<string name="del_ok"> Confirm delete? </string>
+<string name="plug_one"> 0ne </string>
+<string name="plug_two"> Two </string>
+<string name="plug_three"> Three </string>
+<string name="plug_four"> Four </string>
+<string name="plug_five"> Five </string>
+<string name="plug_six"> Six </string>
+<string name="plug_seven"> Day </string>
+<string name="no_empty"> Content can not be empty </string>
+<string name="has_added"> This camera has been added! </string>
+<string name="notic_come"> Doorbell is coming </string>
+<string name="camera_alarm"> Camera alarm </string>
+<string name="judge_ps"> Password check </string>
+<string name="input_camera_ps"> Please enter the camera password </string>
+<string name="rename"> Rename </string>
+<string name="del_camera"> Delete camera </string>
+<string name="complete01"> Done </string>
+<string name="add_by_wifi"> WIFI SmartClock (not networked) </string>
+<string name="add_by_udp"> LAN scanning (networked) </string>
+<string name="add_by_zxing"> QR code scanning (networked) </string>
+<string name="save_time"> Save time: </string>
+<string name="sure_del_video"> Delete this video? </string>
+<string name="cancel"> cancel </string>
+<string name="sure"> OK </string>
+<string name="wating"> Working, please wait ... </string>
+<string name="del_fail"> Delete failed! </string>
+<string name="now_version"> Current version </string>
+<string name="getting_version"> Retrieving server version, please wait ... </string>
+<string name="new_version"> Latest version </string>
+<string name="check_has_update"> New system firmware detected, updated? </string>
+<string name="no_update_now"> Temporarily not updating </string>
+<string name="restarting"> Updating system firmware, camera will restart later ... </string>
+<string name="update"> Update </string>
+<string name="getting_versioning"> Retrieving version info ... </string>
+<string name="cannot_update"> Incomplete information, unable to upgrade </string>
+<string name="no_need_update"> As of version information, there is no need to upgrade </string>
+<string name="video_empty"> Local video is empty! </string>
+<string name="local_video"> Local video </string>
+<string name="exit_camera"> Exit camera interface </string>
+<string name="no_connected"> Please connect again after the operation! </string>
+<string name="look_local_video"> View local video </string>
+<string name="look_remote_video"> View Remote Video </string>
+<string name="del_fail01"> Delete failed! </string>
+<string name="ir_on"> IR on </string>
+<string name="ir_off"> IR off </string>
+<string name="more_video"> Get more video files ... </string>
+<string name="load_complete"> Already loaded </string>
+<string name="title_img"> Picture list </string>
+<string name="yun_camera"> Cloud camera </string>
+<string name="video_list"> Video list </string>
+<string name="add_camera"> Ddd camera </string>
+<string name="dev_code"> Device number: </string>
+<string name="input_dev_code"> Please enter the device number </string>
+<string name="uesrname_1"> Username: </string>
+<string name="dev_ps"> Device password: </string>
+<string name="rescan"> Rescan </string>
+<string name="title"> Title </string>
+<string name="no_camera"> There is currently no camera, you can </string>
+<string name="add_camera_1"> Add camera </string>
+<string name="videoing"> Recording ... </string>
+<string name="remote_video"> Remote video </string>
+<string name="setting"> Setting </string>
+<string name="wifi_setting"> WIFI settings </string>
+<string name="change_ps"> Change password </string>
+<string name="sd_setting"> SD card settings </string>
+<string name="remote_video_1"> Remote recording </string>
+<string name="firmware_update"> Firmware Upgrade </string>
+<string name="change_ps_1"> Change password </string>
+<string name="admin"> Administrator: </string>
+<string name="ps"> Password: </string>
+<string name="del_this_video"> Delete the video </string>
+<string name="video"> Video </string>
+<string name="now_version_1"> Current version: </string>
+<string name="new_version_2"> Latest version: </string>
+<string name="click_update"> Click upgrade </string>
+<string name="add_time"> Add period </string>
+<string name="edit_sensor"> Edit Sensor </string>
+<string name="sensor_id"> Sensor ID </string>
+<string name="sensor_type"> Sensor type </string>
+<string name="scene_name"> Sensor name </string>
+<string name="del_sensor"> Delete sensor </string>
+<string name="security_on"> Arming </string>
+<string name="security_off"> disarming </string>
+<string name="more_sensor"> Get sensor </string>
+<string name="get_more"> Get more </string>
+<string name="coding"> Code state ... </string>
+<string name="exit_code"> Exit the code </string>
+<string name="my_device"> My device </string>
+<string name="get_name"> Please give your device a name </string>
 </resources>

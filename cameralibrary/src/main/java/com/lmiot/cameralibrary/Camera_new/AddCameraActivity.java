@@ -557,7 +557,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
 
 
             if (TextUtils.isEmpty(cameraID)) {
-                ToastUtil.ToastMessage(AddCameraActivity.this, "内容不能为空");
+                ToastUtil.ToastMessage(AddCameraActivity.this, getString(R.string.no_empty));
                 return;
             }
 
@@ -672,7 +672,6 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
             final TextView name = (TextView) v.findViewById(R.id.id_name);
             ImageView add = (ImageView) v.findViewById(R.id.id_add);
 
-            img.setBackgroundResource(R.drawable.camera);
             name.setText(camerBeanList.get(position).getCameraID());
 
             add.setOnClickListener(new OnClickListener() {
@@ -681,7 +680,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
                     CamerBean search = SqlUtil.getInstance().search(camerBeanList.get(position).getCameraID());
 
                     if(search!=null){
-                        ToastUtil.ToastMessage(AddCameraActivity.this,"该摄像头已经被添加!");
+                        ToastUtil.ToastMessage(AddCameraActivity.this,getString(R.string.has_added));
                         return;
                     }
 
@@ -767,7 +766,6 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
      **/
     @Override
     public void callBackSearchResultData(int cameraType, String strMac, String strName, String strDeviceID, String strIpAddr, int port) {
-        Log.e("AddCameraActivity", "找到摄像头：" + strDeviceID + ":" + strName);
 
         mSearchList.put(strDeviceID,strDeviceID);
 

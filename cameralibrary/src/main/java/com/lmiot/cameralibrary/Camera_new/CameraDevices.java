@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,9 +25,7 @@ import com.lmiot.cameralibrary.SQL.SqlUtil;
 import com.lmiot.cameralibrary.Util.DataUtil;
 import com.lmiot.cameralibrary.Util.JumpActivityUtils;
 import com.lmiot.cameralibrary.Util.LayoutDialogUtil;
-import com.lmiot.cameralibrary.Util.ToastUtil;
 import com.lmiot.tiblebarlibrary.LmiotTitleBar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,9 +44,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_camera_new);
-
         SqlUtil.getInstance().initDbHelp(this); //数据库初始化
-        DataUtil.setUerName("123456");
         initView();
 
     }
@@ -211,12 +208,15 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         final Dialog dailog = LayoutDialogUtil.createDailog(CameraDevices.this, R.layout.dialog_change_edit_layout);
         dailog.setCancelable(false);
         TextView title = (TextView) dailog.findViewById(R.id.id_title);
-        title.setText("密码校验");
+        title.setText(R.string.judge_ps);
         final EditText edit = (EditText) dailog.findViewById(R.id.id_edit);
-        edit.setHint("请输入摄像头密码");
+        edit.setHint(R.string.input_camera_ps);
 
         Button sure = (Button) dailog.findViewById(R.id.id_sure);
-        Button cancel = (Button) dailog.findViewById(R.id.id_cancel);
+        ImageView cancel = (ImageView) dailog.findViewById(R.id.id_cancel);
+
+
+        dailog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
         sure.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,8 +250,8 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         TextView bt02 = (TextView) dialog.findViewById(R.id.id_bt02);
         TextView bt03 = (TextView) dialog.findViewById(R.id.id_bt03);
         TextView cancel = (TextView) dialog.findViewById(R.id.id_cancel);
-        bt01.setText("重命名");
-        bt02.setText("删除摄像头");
+        bt01.setText(R.string.rename);
+        bt02.setText(R.string.del_camera);
 
         bt03.setVisibility(View.GONE);
         line2.setVisibility(View.GONE);
@@ -302,8 +302,8 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
 
         editText0.setText(camerBean.getCameraName());
         editText0.setSelection(editText0.getText().length());
-        mtitle0.setText("修改名称");
-        sure.setText("完成");
+        mtitle0.setText(R.string.rename);
+        sure.setText(R.string.complete01);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,7 +323,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
 
                     dailog0.dismiss();
                 } else {
-                    Toast.makeText(CameraDevices.this, "不能为空哦", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CameraDevices.this, getString(R.string.no_empty), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -339,7 +339,6 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
      * 连接摄像头
      */
     private void ConnectCameraData(String mCameraID, String mCameraPs) {
-        Log.d("CameraDevices", "连接服务器:" + mCameraID);
         SystemValue.deviceName = "admin";
         SystemValue.deviceId = mCameraID;
         SystemValue.devicePass = mCameraPs;
@@ -365,9 +364,9 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         TextView bt02 = (TextView) dialog.findViewById(R.id.id_bt02);
         TextView bt03 = (TextView) dialog.findViewById(R.id.id_bt03);
         TextView cancel = (TextView) dialog.findViewById(R.id.id_cancel);
-        bt01.setText("WIFI智能快配(未联网)");
-        bt02.setText("局域网扫描（已联网）");
-        bt03.setText("二维码扫描（已联网）");
+        bt01.setText(R.string.add_by_wifi);
+        bt02.setText(R.string.add_by_udp);
+        bt03.setText(R.string.add_by_zxing);
 
         bt01.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,7 +10,7 @@
 		android:id="@+id/id_lmiot_title_bar"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		app:tv_title="云摄像头"
+		app:tv_title="@string/yun_camera"
 		app:show_iv_menu="true"
 		app:show_tv_menu="false"
 		app:iv_back="@drawable/title_back"
@@ -59,7 +59,7 @@
 				android:src="@drawable/ptz_hori_mirror"
 				android:padding="8dp"
 				android:background="@drawable/ptz_default_set_selector"
-
+				android:tint="@color/colorAccent"
 				/>
 			<ImageView
 				android:id="@+id/ptz_vert_mirror"
@@ -69,7 +69,7 @@
 				android:src="@drawable/ptz_vert_mirror"
 				android:padding="8dp"
 				android:background="@drawable/ptz_default_set_selector"
-
+				android:tint="@color/colorAccent"
 				/>
 
 
@@ -202,7 +202,7 @@
 					android:padding="8dp"
 					android:layout_marginLeft="10dp"
 					android:layout_below="@+id/ptz_audio_layout"
-
+					android:tint="@color/colorAccent"
 					/>
 
 				<RelativeLayout
@@ -247,6 +247,7 @@
 					app:layout_widthPercent="30%h"
 					android:layout_centerInParent="true"
 					android:src="@drawable/camera_centor"
+					android:tint="@color/colorAccent"
 					/>
 				<ImageView
 					android:id="@+id/id_down"
@@ -258,7 +259,7 @@
 					android:src="@drawable/camera_down"
 					android:layout_below="@+id/id_centrol"
 					android:background="@drawable/ptz_default_set_selector"
-
+					android:tint="@color/colorAccent"
 					/>
 
 				<ImageView
@@ -272,7 +273,7 @@
 					android:layout_toRightOf="@+id/id_centrol"
 					android:rotation="-90"
 					android:background="@drawable/ptz_default_set_selector"
-
+					android:tint="@color/colorAccent"
 					/>
 				<ImageView
 					android:id="@+id/id_up"
@@ -285,7 +286,7 @@
 					android:layout_above="@+id/id_centrol"
 					android:rotation="180"
 					android:background="@drawable/ptz_default_set_selector"
-
+android:tint="@color/colorAccent"
 					/>
 
 				<ImageView
@@ -300,7 +301,7 @@
 					android:layout_toLeftOf="@+id/id_centrol"
 					android:layout_toStartOf="@+id/id_centrol"
 					android:background="@drawable/ptz_default_set_selector"
-
+					android:tint="@color/colorAccent"
 					/>
 
 
@@ -316,7 +317,7 @@
 				>
 				<TextView
 					android:id="@+id/id_videoing"
-					android:text="正在录像……"
+					android:text="@string/videoing"
 					android:layout_centerHorizontal="true"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -335,7 +336,7 @@
 					android:src="@drawable/ptz_takepic"
 					android:padding="9dp"
 					android:background="@drawable/ptz_default_set_selector"
-
+					android:tint="@color/colorAccent"
 					/>
 				<ImageView
 					android:id="@+id/ptz_take_videos"
@@ -347,7 +348,7 @@
 					android:src="@drawable/ptz_takevideo"
 					android:layout_toRightOf="@+id/ptz_take_photos"
 					android:background="@drawable/ptz_default_set_selector"
-
+					android:tint="@color/colorAccent"
 					/>
 
 				<ImageView
@@ -360,6 +361,7 @@
 					android:src="@drawable/easyicon_cn"
 					android:layout_below="@+id/ptz_take_photos"
 					android:padding="10dp"
+					android:tint="@color/colorAccent"
 					/>
 
 				<ImageView
@@ -373,6 +375,7 @@
 					android:layout_toRightOf="@+id/ptz_resolution"
 					android:layout_below="@+id/ptz_take_videos"
 					android:padding="8dp"
+					android:tint="@color/colorAccent"
 					/>
 
 

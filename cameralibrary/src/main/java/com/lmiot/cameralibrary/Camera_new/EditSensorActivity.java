@@ -243,7 +243,7 @@ public   class EditSensorActivity extends BaseActivity implements OnClickListene
 	{
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setMessage("正在操作，请稍后...");
+		progressDialog.setMessage(getString(R.string.wating));
 		progressDialog.show();
 	}
 
@@ -271,7 +271,7 @@ public   class EditSensorActivity extends BaseActivity implements OnClickListene
 				// Toast.LENGTH_LONG).show();
 				finish();
 			} else {
-				Toast.makeText(EditSensorActivity.this,"删除失败!",Toast.LENGTH_LONG).show();
+				Toast.makeText(EditSensorActivity.this, R.string.del_fail01,Toast.LENGTH_LONG).show();
 			}
 
 		}
@@ -294,7 +294,7 @@ public   class EditSensorActivity extends BaseActivity implements OnClickListene
 				
 				finish();
 			} else {
-				Toast.makeText(EditSensorActivity.this,"删除失败!",Toast.LENGTH_LONG).show();
+				Toast.makeText(EditSensorActivity.this, R.string.del_fail,Toast.LENGTH_LONG).show();
 			}
 		}
 		if (cmd == ContentCommon.CGI_SET_SENSOR_PRESET) {
