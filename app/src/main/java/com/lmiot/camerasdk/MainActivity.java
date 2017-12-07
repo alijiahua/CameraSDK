@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements CameraDevices.onM
                 startActivity(new Intent(MainActivity.this, CameraDevices.class));
 
                 ApiUtls.getInstance().setUerName("用户ID"); //设置保存摄像头数据的用户ID
-                ApiUtls.getInstance().setMoreItem("隐藏菜单");//使用隐藏菜单，需继承CameraDevices.onMoreItemListener
+               // ApiUtls.getInstance().setMoreItem("隐藏菜单");//使用隐藏菜单，需继承CameraDevices.onMoreItemListener
 
             }
         });
