@@ -7,23 +7,19 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
 import com.lmiot.cameralibrary.SQL.CamerBean;
 import com.lmiot.cameralibrary.SQL.SqlUtil;
-import com.lmiot.cameralibrary.Util.DataUtil;
-import com.lmiot.cameralibrary.Util.JumpActivityUtils;
+import com.lmiot.cameralibrary.Util.ApiUtls;
 import com.lmiot.cameralibrary.Util.LayoutDialogUtil;
 import com.lmiot.tiblebarlibrary.LmiotTitleBar;
 import java.util.ArrayList;
@@ -175,15 +171,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    if(camerBean.getPsRight()){  //已经存过密码
-                        ConnectCameraData(camerBean.getCameraID(), camerBean.getCameraPassword());
-                    }
-                    else{
-                        ShowPsDialog(camerBean);
-                    }
-
-
+                    ApiUtls.getInstance().skipCamera(CameraDevices.this,camerBean);
 
                 }
             });
@@ -203,43 +191,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         }
     }
 
-    /**
-     * 输入密码对话框
-     *
-     * @param camerBean
-     */
-    private void ShowPsDialog(final CamerBean camerBean) {
-        final Dialog dailog = LayoutDialogUtil.createDailog(CameraDevices.this, R.layout.dialog_change_edit_layout);
-        dailog.setCancelable(false);
-        TextView title = (TextView) dailog.findViewById(R.id.id_title);
-        title.setText(R.string.judge_ps);
-        final EditText edit = (EditText) dailog.findViewById(R.id.id_edit);
-        edit.setHint(R.string.input_camera_ps);
 
-        Button sure = (Button) dailog.findViewById(R.id.id_sure);
-        ImageView cancel = (ImageView) dailog.findViewById(R.id.id_cancel);
-
-
-        dailog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-
-        sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String pass = edit.getText().toString();
-                ConnectCameraData(camerBean.getCameraID(), pass);
-                dailog.dismiss();
-
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dailog.dismiss();
-            }
-        });
-
-    }
 
 
     /**
@@ -254,10 +206,10 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         TextView bt02 = (TextView) dialog.findViewById(R.id.id_bt02);
         TextView bt03 = (TextView) dialog.findViewById(R.id.id_bt03);
         TextView cancel = (TextView) dialog.findViewById(R.id.id_cancel);
-        bt01.setText(R.string.rename);
-        bt02.setText(R.string.del_camera);
+        bt01.setText(R.string.del_camera);
+        bt02.setText(R.string.rename);
 
-        String moreItem = DataUtil.getMoreItem();
+        String moreItem = ApiUtls.getInstance().getMoreItem();
 
         if(TextUtils.isEmpty(moreItem)){ //是否显示该菜单,空字符串则不显示，该菜单具体逻辑通过接口抛出处理
             bt03.setVisibility(View.GONE);
@@ -271,7 +223,18 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
 
 
 
+
+
         bt01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               SqlUtil.getInstance().del(camerBean.getCameraID());
+                GetCameraDevices();
+                dialog.dismiss();
+            }
+        });
+
+        bt02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RenameCamera(camerBean);
@@ -282,20 +245,11 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         });
 
 
-        bt02.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               SqlUtil.getInstance().del(camerBean.getCameraID());
-                GetCameraDevices();
-                dialog.dismiss();
-            }
-        });
-
         bt03.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onMoreItemListener != null) {
-                    onMoreItemListener.itemClick(view);
+                    onMoreItemListener.itemClick(camerBean);
                 }
 
                 dialog.dismiss();
@@ -361,17 +315,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
 
 
 
-    /**
-     * 连接摄像头
-     */
-    private void ConnectCameraData(String mCameraID, String mCameraPs) {
-        SystemValue.deviceName = "admin";
-        SystemValue.deviceId = mCameraID;
-        SystemValue.devicePass = mCameraPs;
-        JumpActivityUtils.JumpToActivity(CameraDevices.this, PlayActivity.class, false, true);
 
-
-    }
 
 
 
@@ -434,7 +378,7 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     }
 
     public  interface onMoreItemListener {
-        void itemClick(View view);
+        void itemClick(CamerBean camerBean);
 
     }
 

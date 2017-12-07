@@ -153,7 +153,7 @@
     <string name="judge_ps">密码校验</string>
     <string name="input_camera_ps">请输入摄像头密码</string>
     <string name="rename">重命名</string>
-    <string name="del_camera">删除摄像头</string>
+    <string name="del_camera">删除</string>
     <string name="complete01">完成</string>
     <string name="add_by_wifi">WIFI智能快配(未联网)</string>
     <string name="add_by_udp">局域网扫描（已联网）</string>

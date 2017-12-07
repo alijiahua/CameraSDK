@@ -2,7 +2,9 @@ package com.lmiot.cameralibrary.SQL;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import com.lmiot.cameralibrary.Util.DataUtil;
+
+import com.lmiot.cameralibrary.Util.ApiUtls;
+
 import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.ArrayList;
@@ -69,7 +71,7 @@ public class SqlUtil {
     public void del(String cameraID) {
             QueryBuilder qb = mCamerBeanDao.queryBuilder();
             ArrayList<CamerBean> list = (ArrayList<CamerBean>) qb
-                    .where(CamerBeanDao.Properties.UserName.eq(DataUtil.getUerName()))
+                    .where(CamerBeanDao.Properties.UserName.eq(ApiUtls.getInstance().getUerName()))
                     .where(CamerBeanDao.Properties.CameraID.eq(cameraID))
                     .list();
             if (list.size() >0) {
@@ -85,7 +87,7 @@ public class SqlUtil {
     public CamerBean search(String cameraID) {
             QueryBuilder qb = mCamerBeanDao.queryBuilder();
             ArrayList<CamerBean> list = (ArrayList<CamerBean>) qb
-                    .where(CamerBeanDao.Properties.UserName.eq(DataUtil.getUerName()))
+                    .where(CamerBeanDao.Properties.UserName.eq(ApiUtls.getInstance().getUerName()))
                     .where(CamerBeanDao.Properties.CameraID.eq(cameraID)).list();
             if (list.size() > 0) {
                return list.get(0);
@@ -99,7 +101,7 @@ public class SqlUtil {
      */
     public List<CamerBean> searchAll() {
         List<CamerBean> list = mCamerBeanDao.queryBuilder()
-                .where(CamerBeanDao.Properties.UserName.eq(DataUtil.getUerName()))
+                .where(CamerBeanDao.Properties.UserName.eq(ApiUtls.getInstance().getUerName()))
                 .build()
                 .list();
        return  list;

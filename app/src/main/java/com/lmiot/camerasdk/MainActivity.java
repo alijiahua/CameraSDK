@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.lmiot.cameralibrary.Camera_new.CameraDevices;
-import com.lmiot.cameralibrary.Util.DataUtil;
+import com.lmiot.cameralibrary.SQL.CamerBean;
+import com.lmiot.cameralibrary.Util.ApiUtls;
 
 public class MainActivity extends AppCompatActivity implements CameraDevices.onMoreItemListener {
 
@@ -25,14 +24,17 @@ public class MainActivity extends AppCompatActivity implements CameraDevices.onM
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, CameraDevices.class));
-                DataUtil.setMoreItem("隐藏菜单");
+
+                ApiUtls.getInstance().setUerName("用户ID"); //设置保存摄像头数据的用户ID
+                ApiUtls.getInstance().setMoreItem("隐藏菜单");//使用隐藏菜单，需继承CameraDevices.onMoreItemListener
 
             }
         });
     }
 
+
     @Override
-    public void itemClick(View view) {
-        Toast.makeText(this, "隐藏菜单", Toast.LENGTH_SHORT).show();
+    public void itemClick(CamerBean camerBean) {
+
     }
 }

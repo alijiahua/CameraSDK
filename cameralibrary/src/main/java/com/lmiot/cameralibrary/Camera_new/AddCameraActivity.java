@@ -24,7 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.lmiot.androidtools_library.SDK.ZxingSdk;
-import com.lmiot.androidtools_library.Utils.ActivityUtil;
 import com.lmiot.cameralibrary.Camera_new.BridgeService.AddCameraInterface;
 import com.lmiot.cameralibrary.Camera_new.BridgeService.CallBackMessageInterface;
 import com.lmiot.cameralibrary.Camera_new.adapter.SearchListAdapter;
@@ -33,7 +32,7 @@ import com.lmiot.cameralibrary.Camera_new.utils.SystemValue;
 import com.lmiot.cameralibrary.R;
 import com.lmiot.cameralibrary.SQL.CamerBean;
 import com.lmiot.cameralibrary.SQL.SqlUtil;
-import com.lmiot.cameralibrary.Util.DataUtil;
+import com.lmiot.cameralibrary.Util.ApiUtls;
 import com.lmiot.cameralibrary.Util.JumpActivityUtils;
 import com.lmiot.cameralibrary.Util.ToastUtil;
 import com.lmiot.cameralibrary.Util.WifiConnectionUtil;
@@ -561,7 +560,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
                 return;
             }
 
-        SqlUtil.getInstance().add(new CamerBean(null,cameraID,DataUtil.getUerName(),cameraID,cameraPs,false));
+        SqlUtil.getInstance().add(new CamerBean(null,cameraID, ApiUtls.getInstance().getUerName(),cameraID,cameraPs,false));
         JumpActivityUtils.JumpToActivity(this,CameraDevices.class,true,true);
 
 
@@ -611,7 +610,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
         List<CamerBean> camerBeanList=new ArrayList<>();
         for(Map.Entry<String, String> map:mSearchList.entrySet()){
 
-            camerBeanList.add(new CamerBean(null,map.getKey(),DataUtil.getUerName(),map.getValue(),"",false));
+            camerBeanList.add(new CamerBean(null,map.getKey(), ApiUtls.getInstance().getUerName(),map.getValue(),"",false));
 
         }
 
@@ -684,7 +683,7 @@ public class AddCameraActivity extends BaseActivity implements AddCameraInterfac
                         return;
                     }
 
-                    SqlUtil.getInstance().add(new CamerBean(null,camerBeanList.get(position).getCameraID(),DataUtil.getUerName(),camerBeanList.get(position).getCameraName(),"",false));
+                    SqlUtil.getInstance().add(new CamerBean(null,camerBeanList.get(position).getCameraID(), ApiUtls.getInstance().getUerName(),camerBeanList.get(position).getCameraName(),"",false));
                        finish();
 
                 }

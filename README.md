@@ -20,8 +20,8 @@
 ## 三.启动摄像头页面及设置用户名：
 
         startActivity(new Intent(MainActivity.this, CameraDevices.class));
-        DataUtil.setUerName(SPUtil.getUserName(this)); //设置摄像头保存用户名
-        注：摄像头数据目前保存在本地，要保存到云端参考SqlUtil中的相关方法
+        ApiUtls.getInstance().setUerName("用户ID"); //设置保存摄像头数据的用户ID
+        ApiUtls.getInstance().setMoreItem("隐藏菜单");//使用隐藏菜单，需继承CameraDevices.onMoreItemListener
 
 
 
