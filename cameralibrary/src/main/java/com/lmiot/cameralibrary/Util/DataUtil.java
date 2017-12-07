@@ -7,8 +7,8 @@ package com.lmiot.cameralibrary.Util;
  */
 public class DataUtil {
 
-
     private  static String userName01="123456";
+    private  static String showItem01="";
 
     public static void setUerName(String userName) {
         userName01=userName;
@@ -17,4 +17,17 @@ public class DataUtil {
     public static String getUerName( ) {
       return  userName01;
     }
+
+    /**
+     * 长按隐藏菜单，使用时设为true
+     * @param showItem
+     */
+    public static void setMoreItem(String showItem) {
+        showItem01=showItem;
+    }
+
+    public static String getMoreItem( ) {
+       return showItem01;
+    }
+
 }

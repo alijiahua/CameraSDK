@@ -40,6 +40,11 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
     private LinearLayout mIdAddLayout;
     private GridView mIdDeviceGridview;
     private LmiotTitleBar mLmiotTitleBar;
+    private static onMoreItemListener onMoreItemListener;
+
+    public static void setOnLongItemListener(onMoreItemListener onLongItemListener) {
+        onMoreItemListener = onLongItemListener;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,7 +172,6 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
              final CamerBean camerBean = mCameracontent.get(position);
             textView.setText(camerBean.getCameraName());
 
-
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -253,8 +257,18 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
         bt01.setText(R.string.rename);
         bt02.setText(R.string.del_camera);
 
-        bt03.setVisibility(View.GONE);
-        line2.setVisibility(View.GONE);
+        String moreItem = DataUtil.getMoreItem();
+
+        if(TextUtils.isEmpty(moreItem)){ //是否显示该菜单,空字符串则不显示，该菜单具体逻辑通过接口抛出处理
+            bt03.setVisibility(View.GONE);
+            line2.setVisibility(View.GONE);
+        }
+        else{
+            bt03.setText(moreItem);
+            bt03.setVisibility(View.VISIBLE);
+            line2.setVisibility(View.VISIBLE);
+        }
+
 
 
         bt01.setOnClickListener(new View.OnClickListener() {
@@ -274,6 +288,18 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
                SqlUtil.getInstance().del(camerBean.getCameraID());
                 GetCameraDevices();
                 dialog.dismiss();
+            }
+        });
+
+        bt03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onMoreItemListener != null) {
+                    onMoreItemListener.itemClick(view);
+                }
+
+                dialog.dismiss();
+
             }
         });
 
@@ -404,6 +430,11 @@ public class CameraDevices extends BaseActivity implements View.OnClickListener 
                 dialog.dismiss();
             }
         });
+
+    }
+
+    public  interface onMoreItemListener {
+        void itemClick(View view);
 
     }
 
